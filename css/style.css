@@ -1,3 +1,25 @@
 .card-title.purple.darken-2.white-text.price{
   padding:4px;
 }
+
+img {
+  width: auto;
+}
+
+.condBox {
+  border: 1px solid rgb(212, 212, 212);
+}
+
+.welcome {
+  margin-top: 0.6rem;
+}
+
+.companyCall {
+  font-weight: 400;
+}
+
+.card-content p {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 100;
+}
