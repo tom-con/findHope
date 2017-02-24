@@ -2,6 +2,15 @@
   padding:4px;
 }
 
+body {
+  transition: background-color: 0.5s ease;
+  background-color: rgb(33, 33, 33);
+}
+
+.input-field {
+  margin-top: 0;
+}
+
 img {
   width: auto;
 }
