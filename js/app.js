@@ -37,7 +37,7 @@ $().ready(() => {
   let giveOptions = (items) => {
     let main = $('main');
     let termArray = items.terms;
-    if(termArray.length === 0){
+    if (termArray.length === 0) {
       Materialize.toast('Please try a different term to search', 4000);
       return null;
     }
@@ -83,53 +83,69 @@ $().ready(() => {
     });
   };
 
-
-
   let createForm = () => {
     let main = $('main');
+    let description = $('<div class="row center"><h5>Please filter your search with the following options:</h5></row>')
     main.children().remove();
-    let form = $(`<form id="inputForm" class="row"></form>`);
+    let form = $(`<form id="inputForm"></form>`);
+    let row1 = $(`<div class="row"></div>`);
+    let row2 = $(`<div class="row"></div>`);
     let stateArr = ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT", "VA", "VI", "VT", "WA", "WI", "WV", "WY"];
-    let listDiv = $(`<div class="input-field col s4 m2"></div>`);
-    let list = $('<select id="state"></select>');
-    let accepting = $('<p class="col s6 m3 offset-m1"><input id="accepting" type="checkbox" checked="checked"><label for="accepting">Currently Accepting Volunteers</label></p>');
-    let button = $(`<button id="find" class="btn col s6 m2 offset-m1">Find</button>`);
+    let stateListDiv = $(`<div class="input-field col s6 m2 offset-m2"></div>`);
+    let stateList = $('<select id="state"></select>');
+    let accepting = $('<p class="col s4 m4 offset-m2"><input id="accepting" type="checkbox" ><label for="accepting">Currently Accepting Volunteers</label></p>');
+    let sex = $('<div class="col s6 m4 offset-m2"><p><input class="with-gap" name="sex" type="radio" id="female"><label for="female">Female</label></p><p><input class="with-gap" name="sex" type="radio" id="male"><label for="male">Male</label></p></div>');
+    let age = $('<div class="col s6 m2 offset-m2"><input id="age" type="text"><label>Age</label></div>');
+    let buttonRow = $('<div class="row"></div>');
+    let button = $(`<button id="find" class="btn col s12 m4 offset-m4">Find</button>`);
 
-    list.append(`<option value="" disabled selected>State</option>`)
+    stateList.append(`<option value="" disabled selected>State</option>`);
     for (let state of stateArr) {
-      list.append(`<option value="${state}">${state}</option>`);
+      stateList.append(`<option value="${state}">${state}</option>`);
     }
-    list.append('<label>State</label>');
-    listDiv.append(list);
-    list.material_select();
-    form.append(accepting);
-    form.append(listDiv);
-    form.append(button);
-    main.append(form);
-  }
-
-  let populateList = (items) => {
-    console.log(items);
+    stateList.append('<label>State</label>');
+    stateListDiv.append(stateList);
+    buttonRow.append(button);
+    row1.append(accepting, stateListDiv);
+    row2.append(sex, age);
+    form.append(row1, row2, buttonRow);
+    main.append(description, form);
+    stateList.material_select();
+    button.click((event) => getData());
   };
 
+  let populateList = (items) => {
+    let trialArr = [];
+    for (let trial in items.trials) {
+      let trialInfo = {
+        elibibility: {
+          maxAge: trial.eligibility.structured.max_age,
+          minAge: trial.eligibility.structured.min_age,
+          gender: trial.eligibility.structured.gender,
+        },
+
+
+      }
+      trialArr.push()
+    }
+  };
+
+  let getData = () => {
+    event.preventDefault();
+    let state = $('#state').val();
+    let accepting = $('#accepting').is(':checked') ? "YES" : "NO";
+    console.log(state);
+    $.ajax({
+      method: "GET",
+      url: `https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?sites.org_state_or_province=${state}&accepts_healthy_volunteers_indicator=${accepting}`,
+      dataType: "JSON",
+      success: (data) => populateList(data),
+      error: () => console.log("error")
+    });
+  };
   createWelcomePage();
 
   $('#welcome').click((event) => {
     createSearchPage();
   });
-
-  $('#find').click((event) => {
-    event.preventDefault();
-    let state = $('#state').val();
-    console.log(state);
-    $.ajax({
-      method: "GET",
-      url: `https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?sites.org_state_or_province=${state}`,
-      dataType: "JSON",
-      success: (data) => populateList(data),
-      error: () => console.log("error")
-    });
-  });
-
-
 });
