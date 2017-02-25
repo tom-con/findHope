@@ -12,7 +12,11 @@ $().ready(() => {
     let searchTermRow = $('#searchTermRow');
     searchTermRow.append(`<div id="${termToSearch}"class="chip">${nameOfTerm}<i class="close material-icons">close</i></div>`);
     searchTerms.push(nameOfTerm);
-    console.log(searchTerms);
+    let chip = $(`#${termToSearch}`);
+    chip.click((event) => {
+      let cut = searchTerms.indexOf(nameOfTerm);
+      searchTerms.splice(cut, 1);
+    });
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,6 +73,7 @@ $().ready(() => {
     let termArray = items.terms;
     if (termArray.length === 0) {
       Materialize.toast('Please try a different term to search', 4000);
+
       return null;
     }
     let condBox = $('#condBox');
@@ -76,7 +81,7 @@ $().ready(() => {
 
     condBox.children().remove();
     for (let condition of termArray) {
-      let condChip = $(`<div class="chip">${condition.term}</div>`)
+      let condChip = $(`<div class="chip">${condition.term}</div>`);
       condBox.append(condChip);
       condChip.click(() => addToSearch(condition.term_key, condition.term));
     }
@@ -92,10 +97,9 @@ $().ready(() => {
       main.append(continueRow);
       continueButton.click((event) => {
         createForm();
-      })
+      });
     }
-
-  }
+  };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   |                              |
@@ -110,6 +114,7 @@ $().ready(() => {
     let search = $('#mainSearch').val();
     if (search.length === 0) {
       Materialize.toast('Please enter a term to search', 4000);
+
       return null;
     }
     $.ajax({
@@ -173,31 +178,15 @@ $().ready(() => {
     let newRow = '';
     main.children().remove();
 
-    for (var i = 0; i < arrayOfResults.length; i++) {
+    for (let i = 0; i < arrayOfResults.length; i++) {
       let curr = arrayOfResults[i];
-      let trialCard = $(`<div class="card">
-        <div class="card-content"><h6></h6>
-      </div>
-      <div class="card-tabs">
-        <ul class="tabs tabs-fixed-width">
-          <li class="tab"><a href="#${curr.nciID}contact">Contact</a></li>
-          <li class="tab"><a href="#${curr.nciID}location">Location</a></li>
-          <li class="tab"><a class="active" href="#${curr.nciID}details">Details</a></li>
-        </ul>
-      </div>
-      <div class="card-content grey lighten-4">
-        <div id="${curr.nciID}contact"><div class="row"><strong>Contact Name:</strong> ${curr.contact.contact_name}</div><div class="row"><strong>Contact Email:</strong> ${curr.contact.contact_email}</div></div>
-        <div id="${curr.nciID}location">Text here2</div>
-        <div id="${curr.nciID}details">${curr.briefSummary}</div>
-      </div>
-    </div>`)
+      let trialCard = $(`<div class="card teal"><div class="card-content"><h6></h6></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
+      <div id="${curr.nciID}location"><p class="row">${curr.contact.org_name}</p><p class="row">${curr.contact.org_address_line_1}</p><p class="row">${curr.contact.org_city}, ${curr.contact.org_state_or_province}</p><p class="row">${curr.contact.org_postal_code}</p></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
       newRow = $(`<div class="row"></div>`);
       main.append(newRow);
       newRow.append(trialCard);
       $('ul.tabs').tabs();
     }
-
-
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -215,6 +204,7 @@ $().ready(() => {
       for (let obj of unstrucList) {
         arr.push(obj.description);
       }
+
       return arr;
     };
     let getContact = (contObj) => {
@@ -222,12 +212,20 @@ $().ready(() => {
       for (let item in contObj) {
         newObj[item] = contObj[item];
       }
+
       return newObj;
+    };
+    let getDiseases = (diseaseList) => {
+      let newArr = [];
+      for (let disease of diseaseList){
+        if(disease.inclusion_indicator === "TRIAL") newArr.push(disease.preferred_name);
+      }
+      let diseases = newArr.join(", ");
+      console.log(diseases);
     }
     let trialArr = [];
     console.log("entire result!", items);
     for (let trial of items.trials) {
-      // console.log("this trial", trial);
       let individualTrialInfo = {
         briefTitle: trial.brief_title,
         briefSummary: trial.brief_summary,
@@ -236,6 +234,7 @@ $().ready(() => {
         organization: trial.lead_org,
         nciID: trial.nci_id,
         nctID: trial.nct_id,
+        diseaseArr: getDiseases(trial.diseases),
         contact: getContact(trial.sites[0]),
         eligibility: {
           maxAge: trial.eligibility.structured.max_age,
@@ -259,12 +258,18 @@ $().ready(() => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let getData = () => {
     event.preventDefault();
-    let state = `&sites.org_state_or_province=${$('#state').val()}`;
+    let state = $('#state').val() === null ? "" : `&sites.org_state_or_province=${$('#state').val()}`;
     let accepting = `&accepts_healthy_volunteers_indicator=${$('#accepting').is(':checked') ? "YES" : "NO"}`;
-    let sex = `&eligibility.structured.gender=both&eligibility.structured.gender=${$('input[name="sex"]:checked').val()}`;
+    let sex =$('input[name="sex"]:checked').val() === null ? "both" : `&eligibility.structured.gender=both&eligibility.structured.gender=${$('input[name="sex"]:checked').val()}`;
+    let disease = "";
+    for (var i = 0; i < searchTerms.length; i++) {
+      disease += `&diseases.display_name=${searchTerms[i]}`;
+    }
+    console.log(disease);
+
     $.ajax({
       method: "GET",
-      url: `https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?size=50${state}${accepting}${sex}`,
+      url: `https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?size=50${state}${accepting}${sex}${disease}`,
       dataType: "JSON",
       success: (data) => createTrialArray(data),
       error: () => console.log("error")
