@@ -32,3 +32,8 @@ img {
   line-height: 24px;
   font-weight: 100;
 }
+
+ul div .indicator {
+  background-color: #7B1FA2;
+  color: #7B1FA2;
+}

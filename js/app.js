@@ -1,5 +1,6 @@
 $().ready(() => {
   let searchTerms = [];
+  let resultsArr = [];
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   |                              |
@@ -30,6 +31,9 @@ $().ready(() => {
     let intro = $(`<div class="row"><div class="center col s12 m10 offset-m1"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome">Welcome</h2></span><p>Let <span class="companyCall">findHope&#8482;</span> help you and your loved ones connect to cancer patient clinical trials across the United States through an easy to use web application. Search through the National Cancer Institute's entire database of available trials in minutes. Narrow your search by condition, location, age, and more.</p></div><div class="card-action"><button id="welcome" class="btn">Continue</button></div></div></div></div>`);
 
     main.append(intro);
+    $('#welcome').click((event) => {
+      createSearchPage();
+    });
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -166,6 +170,19 @@ $().ready(() => {
     button.click((event) => getData());
   };
 
+  let removeDuplicates = (arrayOfResults) => {
+    let summArr = [];
+    let retArray = [];
+    for (var i = arrayOfResults.length-1; i >= 0; i--) {
+      if(!(summArr.includes(arrayOfResults[i].briefSummary))){
+        summArr.push(arrayOfResults[i].briefSummary);
+        retArray.push(arrayOfResults[i]);
+      }
+    }
+    console.log(retArray);
+    return retArray;
+  };
+
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   |                              |
   |        POPULATES RESULTS     |
@@ -173,20 +190,23 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let populateResults = (arrayOfResults) => {
-    console.log(arrayOfResults);
+    console.log("in populateResults");
+    console.log("results to populate with: ", arrayOfResults);
     let main = $('main');
+    let description = $(`<div class="center row"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`)
     let newRow = '';
     main.children().remove();
+    main.append(description);
 
     for (let i = 0; i < arrayOfResults.length; i++) {
       let curr = arrayOfResults[i];
-      let trialCard = $(`<div class="card teal"><div class="card-content"><h6></h6></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
+      let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact.org_name} has an ongoing trial concerning these conditions: </h5><p class="white-text">${curr.diseaseArr}</p></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
       <div id="${curr.nciID}location"><p class="row">${curr.contact.org_name}</p><p class="row">${curr.contact.org_address_line_1}</p><p class="row">${curr.contact.org_city}, ${curr.contact.org_state_or_province}</p><p class="row">${curr.contact.org_postal_code}</p></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
       newRow = $(`<div class="row"></div>`);
       main.append(newRow);
       newRow.append(trialCard);
-      $('ul.tabs').tabs();
     }
+    $('ul.tabs').tabs();
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,8 +217,8 @@ $().ready(() => {
   |        TRIALS NEAR THEM      |
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-  let createTrialArray = (items) => {
-    console.log(items);
+  let addToTrialArray = (items) => {
+    console.log("items added to array:", items);
     let parseUnstructured = (unstrucList) => {
       let arr = [];
       for (let obj of unstrucList) {
@@ -210,21 +230,26 @@ $().ready(() => {
     let getContact = (contObj) => {
       let newObj = {};
       for (let item in contObj) {
-        newObj[item] = contObj[item];
+        if (contObj[item] === null) {
+          newObj[item] = "Information not available at this time"
+        } else {
+          newObj[item] = contObj[item];
+        }
       }
 
       return newObj;
     };
     let getDiseases = (diseaseList) => {
       let newArr = [];
-      for (let disease of diseaseList){
-        if(disease.inclusion_indicator === "TRIAL") newArr.push(disease.preferred_name);
+      for (let disease of diseaseList) {
+        if (disease.inclusion_indicator === "TRIAL") newArr.push(disease.preferred_name);
       }
+      newArr.splice(10, newArr.length - 10)
       let diseases = newArr.join(", ");
-      console.log(diseases);
+
+      return diseases;
     }
-    let trialArr = [];
-    console.log("entire result!", items);
+    // let trialArr = [];
     for (let trial of items.trials) {
       let individualTrialInfo = {
         briefTitle: trial.brief_title,
@@ -243,9 +268,11 @@ $().ready(() => {
           other: parseUnstructured(trial.eligibility.unstructured)
         }
       };
-      trialArr.push(individualTrialInfo);
+      // trialArr.push(individualTrialInfo);
+      resultsArr.push(individualTrialInfo);
     }
-    populateResults(trialArr);
+    // console.log("resultsArr inside addToTrialArray", resultsArr);
+    // populateResults(trialArr);
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -260,20 +287,26 @@ $().ready(() => {
     event.preventDefault();
     let state = $('#state').val() === null ? "" : `&sites.org_state_or_province=${$('#state').val()}`;
     let accepting = `&accepts_healthy_volunteers_indicator=${$('#accepting').is(':checked') ? "YES" : "NO"}`;
-    let sex =$('input[name="sex"]:checked').val() === null ? "both" : `&eligibility.structured.gender=both&eligibility.structured.gender=${$('input[name="sex"]:checked').val()}`;
-    let disease = "";
-    for (var i = 0; i < searchTerms.length; i++) {
-      disease += `&diseases.display_name=${searchTerms[i]}`;
-    }
-    console.log(disease);
-
-    $.ajax({
-      method: "GET",
-      url: `https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?size=50${state}${accepting}${sex}${disease}`,
-      dataType: "JSON",
-      success: (data) => createTrialArray(data),
-      error: () => console.log("error")
+    let sex = $('input[name="sex"]:checked').val() === null ? "both" : `&eligibility.structured.gender=both&eligibility.structured.gender=${$('input[name="sex"]:checked').val()}`;
+    console.log("Searchterms before search", searchTerms);
+    var deferreds = [];
+    $.each(searchTerms, (i) => {
+      console.log(searchTerms[i]);
+      let disease = `&diseases.display_name=${searchTerms[i]}`;
+      deferreds.push(
+        $.ajax({
+          method: "GET",
+          url: `https://clinicaltrialsapi.cancer.gov/v1/clinical-trials?size=50${state}${accepting}${sex}${disease}`,
+          dataType: "JSON",
+          success: (data) => addToTrialArray(data),
+          error: () => console.log("error")
+        })
+      )
     });
+    console.log(deferreds);
+    $.when.apply($, deferreds).then(() => {
+      populateResults(removeDuplicates(resultsArr));
+    }).fail(() => console.log("error"));
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -284,8 +317,4 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   createWelcomePage();
-
-  $('#welcome').click((event) => {
-    createSearchPage();
-  });
 });
