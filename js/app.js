@@ -170,11 +170,17 @@ $().ready(() => {
     button.click((event) => getData());
   };
 
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  |                              |
+  |        REMOVES DUPLICATES    |
+  |        FROM RESULT ARRAY     |
+  |                              |
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let removeDuplicates = (arrayOfResults) => {
     let summArr = [];
     let retArray = [];
-    for (var i = arrayOfResults.length-1; i >= 0; i--) {
-      if(!(summArr.includes(arrayOfResults[i].briefSummary))){
+    for (let i = arrayOfResults.length - 1; i >= 0; i--) {
+      if (!(summArr.includes(arrayOfResults[i].briefSummary))) {
         summArr.push(arrayOfResults[i].briefSummary);
         retArray.push(arrayOfResults[i]);
       }
@@ -193,7 +199,7 @@ $().ready(() => {
     console.log("in populateResults");
     console.log("results to populate with: ", arrayOfResults);
     let main = $('main');
-    let description = $(`<div class="center row"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`)
+    let description = $(`<div class="center row"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`);
     let newRow = '';
     main.children().remove();
     main.append(description);
@@ -231,7 +237,7 @@ $().ready(() => {
       let newObj = {};
       for (let item in contObj) {
         if (contObj[item] === null) {
-          newObj[item] = "Information not available at this time"
+          newObj[item] = "Information not available at this time";
         } else {
           newObj[item] = contObj[item];
         }
@@ -242,14 +248,15 @@ $().ready(() => {
     let getDiseases = (diseaseList) => {
       let newArr = [];
       for (let disease of diseaseList) {
-        if (disease.inclusion_indicator === "TRIAL") newArr.push(disease.preferred_name);
+        if (disease.inclusion_indicator === "TRIAL") {
+          newArr.push(disease.preferred_name);
+        }
       }
-      newArr.splice(10, newArr.length - 10)
+      newArr.splice(10, newArr.length - 10);
       let diseases = newArr.join(", ");
 
       return diseases;
-    }
-    // let trialArr = [];
+    };
     for (let trial of items.trials) {
       let individualTrialInfo = {
         briefTitle: trial.brief_title,
@@ -268,11 +275,8 @@ $().ready(() => {
           other: parseUnstructured(trial.eligibility.unstructured)
         }
       };
-      // trialArr.push(individualTrialInfo);
       resultsArr.push(individualTrialInfo);
     }
-    // console.log("resultsArr inside addToTrialArray", resultsArr);
-    // populateResults(trialArr);
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -301,7 +305,7 @@ $().ready(() => {
           success: (data) => addToTrialArray(data),
           error: () => console.log("error")
         })
-      )
+      );
     });
     console.log(deferreds);
     $.when.apply($, deferreds).then(() => {
