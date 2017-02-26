@@ -36,7 +36,7 @@ $().ready(() => {
   let createWelcomePage = () => {
     let body = $('body');
     let main = $('main');
-    let intro = $(`<div class="row"><div class="col s12 m12 center"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome ">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn">Continue</button></div></div></div></div>`);
+    let intro = $(`<div class="row"><div class="col s12 m12 center"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome ">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn flow-text">Continue</button></div></div></div></div>`);
 
     main.append(intro);
     $('#welcome').click((event) => createSearchPage());
@@ -51,10 +51,10 @@ $().ready(() => {
   let createSearchPage = () => {
     let body = $('body');
     let main = $('main');
-    let description = $(`<div class="row"><p class="center col s12 m12">Please enter a condition to search for.</p></div>`);
+    let description = $(`<div class="row"><p class="center col s12 m12 flow-text">Please enter a condition to search for.</p></div>`);
     let form = $(`<form id="inputForm" class="row"></form>`);
-    let condition = $(`<input id="mainSearch" class="col s12 m10 offset-m1" type="text" placeholder="Ex. Pancreatic Carcinoma, Lung, Lymphoma">`);
-    let searchButton = $(`<button id="termSearch" class="btn col s8 offset-s2 m6 offset-m3">Search for Terms</button>`);
+    let condition = $(`<input id="mainSearch" class="col s12 m10 offset-m1 flow-text" type="text" placeholder="Ex. Pancreatic Carcinoma, Lung, Lymphoma">`);
+    let searchButton = $(`<button id="termSearch" class="btn col s8 offset-s2 m6 offset-m3 flow-text">Search for Terms</button>`);
     let condBox = $(`<div id="condBox" class="center col s12 m12 condBox"><p>Add to Search</p></div>`);
 
     body.css("background-color", "rgb(255, 255, 255)");
@@ -87,10 +87,10 @@ $().ready(() => {
       return null;
     }
     let condBox = $('#condBox');
-    let searchTermRow = $('<div id="searchTermRow" class="center row"></div>');
+    let searchTermRow = $('<div id="searchTermRow" class="center row flow-text"></div>');
     condBox.children().remove();
     for (let condition of termArray) {
-      let condChip = $(`<div class="chip" data-id="${condition.term_key}">${condition.term}</div>`);
+      let condChip = $(`<div class="chip flow-text" data-id="${condition.term_key}">${condition.term}</div>`);
       condBox.append(condChip);
       condChip.click((event) => {
         if (!($(event.target).hasClass('purple-text'))) {
@@ -105,7 +105,7 @@ $().ready(() => {
 
     if (!(main.children().last()[0] === $('#continueRow')[0])) {
       let continueRow = $('<div id="continueRow" class="row"></div>');
-      let continueButton = $(`<button id="continueToFilter" class="btn col s8 offset-s2 m6 offset-m3"> Finished Adding Terms</button>`);
+      let continueButton = $(`<button id="continueToFilter" class="btn tooltipped col s8 offset-s2 m6 offset-m3 flow-text" data-position="right" data-delay="50" data-tooltip="You can search for more terms above"> Finished Adding Terms</button>`);
 
       continueRow.append(continueButton);
       main.append('<br>');
@@ -128,7 +128,7 @@ $().ready(() => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let ajaxTerms = (event) => {
     event.preventDefault();
-    $(event.target).text("Seach for more terms")
+    $(event.target).text("Seach for more terms");
     let search = $('#mainSearch').val();
     if (search.length === 0) {
       Materialize.toast('Please enter a term to search', 4000);
@@ -155,7 +155,7 @@ $().ready(() => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let createForm = () => {
     let main = $('main');
-    let description = $('<div class="row center"><h5>Please filter your search with the following options:</h5></div><div class="row center"><h6>(You can leave fields blank to increase search results)</h6></div>');
+    let description = $('<div class="row center flow-text"><h5>Please filter your search with the following options:</h5></div><div class="row center flow-text"><h6>(You can leave fields blank to increase search results)</h6></div>');
     main.children().remove();
     let form = $(`<form id="inputForm"></form>`);
     let row1 = $(`<div class="row"></div>`);
@@ -210,21 +210,21 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let populateResults = (arrayOfResults) => {
-    console.log("in populateResults");
     console.log("results to populate with: ", arrayOfResults);
     let main = $('main');
-    let description = $(`<div class="center row"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`);
+    let description = $(`<div class="center row flow-text"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`);
     let newRow = '';
     main.children().remove();
     main.append(description);
 
     for (let i = 0; i < arrayOfResults.length; i++) {
       let curr = arrayOfResults[i];
-      let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact.org_name} has an ongoing trial concerning these conditions: </h5><p class="white-text">${curr.diseaseArr}</p></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
+      let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact.org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
       <div id="${curr.nciID}location"><p class="row">${curr.contact.org_name}</p><p class="row">${curr.contact.org_address_line_1}</p><p class="row">${curr.contact.org_city}, ${curr.contact.org_state_or_province}</p><p class="row">${curr.contact.org_postal_code}</p></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
       newRow = $(`<div class="row"></div>`);
       main.append(newRow);
       newRow.append(trialCard);
+      $(`#${curr.nciID}diseaseArea`).append(curr.diseaseElement);
     }
     $('ul.tabs').tabs();
   };
@@ -259,17 +259,33 @@ $().ready(() => {
 
       return newObj;
     };
+
     let getDiseases = (diseaseList) => {
-      let newArr = [];
-      for (let disease of diseaseList) {
-        if (disease.inclusion_indicator === "TRIAL") {
-          newArr.push(disease.preferred_name);
+      let diseaseListElement = $('<div class="row"></div>');
+      let left = $('<div class="col s12 m6"></div>').appendTo(diseaseListElement);
+      let leftUl = $('<ul class="collection"></ul>').appendTo(left);
+      let right = $('<div class="col s12 m6"></div>').appendTo(diseaseListElement);
+      let rightUl = $('<ul class="collection"></ul>').appendTo(right);
+      let starCount = 0;
+      for (let i = 0; i < diseaseList.length; i++) {
+        let newDisease = "";
+        if (diseaseList[i].inclusion_indicator === "TRIAL") {
+          // console.log("searchTerms", searchTerms);
+          // console.log("prefered_name", diseaseList[i].prefered_name);
+          if (searchTerms.includes(diseaseList[i].preferred_name)) {
+            newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}<i class="small material-icons right">grade</i></li>`);
+            starCount++;
+          } else {
+            newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}</li>`);
+          }
+        }
+        if (i % 2 === 0) {
+          leftUl.append(newDisease);
+        } else {
+          rightUl.append(newDisease);
         }
       }
-      newArr.splice(10, newArr.length - 10);
-      let diseases = newArr.join(", ");
-
-      return diseases;
+      return diseaseListElement[0];
     };
     for (let trial of items.trials) {
       let individualTrialInfo = {
@@ -280,7 +296,7 @@ $().ready(() => {
         organization: trial.lead_org,
         nciID: trial.nci_id,
         nctID: trial.nct_id,
-        diseaseArr: getDiseases(trial.diseases),
+        diseaseElement: getDiseases(trial.diseases),
         contact: getContact(trial.sites[0]),
         eligibility: {
           maxAge: trial.eligibility.structured.max_age,
@@ -307,9 +323,8 @@ $().ready(() => {
     let accepting = `&accepts_healthy_volunteers_indicator=${$('#accepting').is(':checked') ? "YES" : "NO"}`;
     let sex = $('input[name="sex"]:checked').val() === null ? "both" : `&eligibility.structured.gender=both&eligibility.structured.gender=${$('input[name="sex"]:checked').val()}`;
     console.log("Searchterms before search", searchTerms);
-    var deferreds = [];
+    let deferreds = [];
     $.each(searchTerms, (i) => {
-      console.log(searchTerms[i]);
       let disease = `&diseases.display_name=${searchTerms[i]}`;
       deferreds.push(
         $.ajax({
