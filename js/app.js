@@ -12,7 +12,7 @@ $().ready(() => {
   let addToSearch = (termToSearch, nameOfTerm) => {
     let searchTermRow = $('#searchTermRow');
     searchTermRow.append(`<div id="${termToSearch}"class="chip purple-text">${nameOfTerm}<i class="close material-icons">close</i></div>`);
-    Materialize.toast(`${nameOfTerm} added to the search!`, 3000);
+    Materialize.toast(`${nameOfTerm} added to the search!`, 2000);
     searchTerms.push(nameOfTerm);
     let chip = $(`#${termToSearch}`);
     let condBoxChip = $('#condBox').children(`.purple-text[data-id="${termToSearch}"]`);
@@ -273,7 +273,7 @@ $().ready(() => {
           // console.log("searchTerms", searchTerms);
           // console.log("prefered_name", diseaseList[i].prefered_name);
           if (searchTerms.includes(diseaseList[i].preferred_name)) {
-            newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}<i class="small material-icons right">grade</i></li>`);
+            newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}<i class="small material-icons right purple-text">grade</i></li>`);
             starCount++;
           } else {
             newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}</li>`);
