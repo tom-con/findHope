@@ -11,13 +11,21 @@ $().ready(() => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let addToSearch = (termToSearch, nameOfTerm) => {
     let searchTermRow = $('#searchTermRow');
-    searchTermRow.append(`<div id="${termToSearch}"class="chip">${nameOfTerm}<i class="close material-icons">close</i></div>`);
+    searchTermRow.append(`<div id="${termToSearch}"class="chip purple-text">${nameOfTerm}<i class="close material-icons">close</i></div>`);
+    Materialize.toast(`${nameOfTerm} added to the search!`, 3000);
     searchTerms.push(nameOfTerm);
     let chip = $(`#${termToSearch}`);
+    let condBoxChip = $('#condBox').children(`.purple-text[data-id="${termToSearch}"]`);
+
     chip.click((event) => {
       let cut = searchTerms.indexOf(nameOfTerm);
       searchTerms.splice(cut, 1);
+      condBoxChip.toggleClass('purple-text');
     });
+  };
+
+  let removeFromSearch = (termToRemove) => {
+    $(`#${termToRemove}`).remove();
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,12 +36,10 @@ $().ready(() => {
   let createWelcomePage = () => {
     let body = $('body');
     let main = $('main');
-    let intro = $(`<div class="row"><div class="center col s12 m10 offset-m1"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome">Welcome</h2></span><p>Let <span class="companyCall">findHope&#8482;</span> help you and your loved ones connect to cancer patient clinical trials across the United States through an easy to use web application. Search through the National Cancer Institute's entire database of available trials in minutes. Narrow your search by condition, location, age, and more.</p></div><div class="card-action"><button id="welcome" class="btn">Continue</button></div></div></div></div>`);
+    let intro = $(`<div class="row"><div class="col s12 m12 center"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome ">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn">Continue</button></div></div></div></div>`);
 
     main.append(intro);
-    $('#welcome').click((event) => {
-      createSearchPage();
-    });
+    $('#welcome').click((event) => createSearchPage());
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -82,12 +88,19 @@ $().ready(() => {
     }
     let condBox = $('#condBox');
     let searchTermRow = $('<div id="searchTermRow" class="center row"></div>');
-
     condBox.children().remove();
     for (let condition of termArray) {
-      let condChip = $(`<div class="chip">${condition.term}</div>`);
+      let condChip = $(`<div class="chip" data-id="${condition.term_key}">${condition.term}</div>`);
       condBox.append(condChip);
-      condChip.click(() => addToSearch(condition.term_key, condition.term));
+      condChip.click((event) => {
+        if (!($(event.target).hasClass('purple-text'))) {
+          $(event.target).toggleClass("purple-text");
+          addToSearch(condition.term_key, condition.term);
+        } else {
+          $(event.target).toggleClass('purple-text');
+          removeFromSearch(condition.term_key, condition.term);
+        }
+      });
     }
 
     if (!(main.children().last()[0] === $('#continueRow')[0])) {
@@ -115,6 +128,7 @@ $().ready(() => {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let ajaxTerms = (event) => {
     event.preventDefault();
+    $(event.target).text("Seach for more terms")
     let search = $('#mainSearch').val();
     if (search.length === 0) {
       Materialize.toast('Please enter a term to search', 4000);

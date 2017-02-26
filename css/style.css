@@ -1,39 +1,47 @@
-.card-title.purple.darken-2.white-text.price{
-  padding:4px;
+.card-title.purple.darken-2.white-text.price {
+    padding: 4px;
 }
 
 body {
-  transition: background-color: 0.5s ease;
-  background-color: rgb(33, 33, 33);
+    -webkit-transition: 2.5s;
+    -moz-transition: 2.5s;
+    -ms-transition: 2.5s;
+    -o-transition: 2.5s;
+    transition: 2.5s;
+    background-color: rgb(33, 33, 33);
+}
+li .text {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .input-field {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 img {
-  width: auto;
+    width: auto;
 }
 
 .condBox {
-  border: 1px solid rgb(212, 212, 212);
+    border: 1px solid rgb(212, 212, 212);
 }
 
 .welcome {
-  margin-top: 0.6rem;
+    margin-top: 0.6rem;
 }
 
 .companyCall {
-  font-weight: 400;
+    font-weight: 400;
 }
 
 .card-content p {
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 100;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 100;
 }
 
 ul div .indicator {
-  background-color: #7B1FA2;
-  color: #7B1FA2;
+    background-color: #7B1FA2;
+    color: #7B1FA2;
 }
