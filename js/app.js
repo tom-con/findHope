@@ -2,6 +2,29 @@ $().ready(() => {
   let searchTerms = [];
   let resultsArr = [];
 
+  let makeMap = (nciID, lat, lon) => {
+    let mapOptions = {
+      zoom: 12,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      center: new google.maps.LatLng(parseFloat(lat), parseFloat(lon)),
+      panControl: false,
+      panControlOptions: {
+        position: google.maps.ControlPosition.BOTTOM_LEFT
+      },
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.LARGE,
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      },
+      scaleControl: false
+    };
+    let map = new google.maps.Map(document.getElementById(`${nciID}loc`), mapOptions);
+    let marker = new google.maps.Marker({
+    position: {lat: parseFloat(lat), lng: parseFloat(lon)},
+    map: map
+  });
+  }
+
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   |                              |
   |        ADD SELECTED TERMS    |
@@ -36,7 +59,7 @@ $().ready(() => {
   let createWelcomePage = () => {
     let body = $('body');
     let main = $('main');
-    let intro = $(`<div class="row"><div class="col s12 m12 center"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome ">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn flow-text">Continue</button></div></div></div></div>`);
+    let intro = $(`<div class="row"><div class="col s12 m12 center"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn flow-text">Continue</button></div></div></div></div>`);
 
     main.append(intro);
     $('#welcome').click((event) => createSearchPage());
@@ -199,7 +222,7 @@ $().ready(() => {
         retArray.push(arrayOfResults[i]);
       }
     }
-    console.log(retArray);
+    // console.log(retArray);
     return retArray;
   };
 
@@ -210,23 +233,52 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let populateResults = (arrayOfResults) => {
-    console.log("results to populate with: ", arrayOfResults);
     let main = $('main');
-    let description = $(`<div class="center row flow-text"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`);
-    let newRow = '';
     main.children().remove();
+    let description = $(`<div class="center row flow-text"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`);
+    let organizeRow = $(`<div class="row center"><h6>The results have been filtered by how well they matched your search results</h6></div`);
+    let newRow = '';
     main.append(description);
+    main.append(organizeRow);
+    $('#filtration').material_select();
 
-    for (let i = 0; i < arrayOfResults.length; i++) {
-      let curr = arrayOfResults[i];
-      let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact.org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
-      <div id="${curr.nciID}location"><p class="row">${curr.contact.org_name}</p><p class="row">${curr.contact.org_address_line_1}</p><p class="row">${curr.contact.org_city}, ${curr.contact.org_state_or_province}</p><p class="row">${curr.contact.org_postal_code}</p></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
-      newRow = $(`<div class="row"></div>`);
-      main.append(newRow);
-      newRow.append(trialCard);
-      $(`#${curr.nciID}diseaseArea`).append(curr.diseaseElement);
+
+    let makeResults = (resultsArrToMake) => {
+      let newRow = '';
+      for (let i = 0; i < resultsArrToMake.length; i++) {
+        let curr = resultsArrToMake[i];
+        let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact.org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
+        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div><p class="row">${curr.contact.org_name}</p><p class="row">${curr.contact.org_address_line_1}</p><p class="row">${curr.contact.org_city}, ${curr.contact.org_state_or_province}</p><p class="row">${curr.contact.org_postal_code}</p></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
+        newRow = $(`<div class="row trial"></div>`);
+        main.append(newRow);
+        newRow.append(trialCard);
+        $(`#${curr.nciID}diseaseArea`).append(curr.diseaseElement[0]);
+        makeMap(curr.nciID, curr.coordinates.lat, curr.coordinates.lon);
+
+      }
+      $('ul.tabs').tabs();
     }
-    $('ul.tabs').tabs();
+
+    let organizeList = (trialArr) => {
+      console.log(trialArr);
+      $('.trial').remove();
+
+      let finalArr = [];
+
+
+        finalArr = trialArr.sort((a, b) => {
+          return a.diseaseElement[1] - b.diseaseElement[1];
+        }).reverse();
+
+      makeResults(finalArr);
+    };
+
+
+    organizeList(arrayOfResults);
+    $('#goSearch').click(() => {
+      console.log("clicked");
+      organizeList(arrayOfResults);
+    });
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -238,7 +290,7 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let addToTrialArray = (items) => {
-    console.log("items added to array:", items);
+
     let parseUnstructured = (unstrucList) => {
       let arr = [];
       for (let obj of unstrucList) {
@@ -260,6 +312,16 @@ $().ready(() => {
       return newObj;
     };
 
+    let getLocation = (locationObj) => {
+      let locObj = getContact(locationObj);
+      let orgLat = locObj.org_coordinates.lat;
+      let orgLon = locObj.org_coordinates.lon;
+      return {
+        lat: orgLat,
+        lon: orgLon
+      };
+    };
+
     let getDiseases = (diseaseList) => {
       let diseaseListElement = $('<div class="row"></div>');
       let left = $('<div class="col s12 m6"></div>').appendTo(diseaseListElement);
@@ -270,10 +332,8 @@ $().ready(() => {
       for (let i = 0; i < diseaseList.length; i++) {
         let newDisease = "";
         if (diseaseList[i].inclusion_indicator === "TRIAL") {
-          // console.log("searchTerms", searchTerms);
-          // console.log("prefered_name", diseaseList[i].prefered_name);
           if (searchTerms.includes(diseaseList[i].preferred_name)) {
-            newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}<i class="small material-icons right purple-text">grade</i></li>`);
+            newDisease = $(`<li class="collection-item"><i class="small material-icons left purple-text">grade</i>${diseaseList[i].preferred_name}</li>`);
             starCount++;
           } else {
             newDisease = $(`<li class="collection-item">${diseaseList[i].preferred_name}</li>`);
@@ -285,7 +345,7 @@ $().ready(() => {
           rightUl.append(newDisease);
         }
       }
-      return diseaseListElement[0];
+      return [diseaseListElement[0], starCount];
     };
     for (let trial of items.trials) {
       let individualTrialInfo = {
@@ -294,6 +354,7 @@ $().ready(() => {
         title: trial.official_title,
         description: trial.detail_description,
         organization: trial.lead_org,
+        coordinates: getLocation(trial.sites[0]),
         nciID: trial.nci_id,
         nctID: trial.nct_id,
         diseaseElement: getDiseases(trial.diseases),
@@ -322,7 +383,7 @@ $().ready(() => {
     let state = $('#state').val() === null ? "" : `&sites.org_state_or_province=${$('#state').val()}`;
     let accepting = `&accepts_healthy_volunteers_indicator=${$('#accepting').is(':checked') ? "YES" : "NO"}`;
     let sex = $('input[name="sex"]:checked').val() === null ? "both" : `&eligibility.structured.gender=both&eligibility.structured.gender=${$('input[name="sex"]:checked').val()}`;
-    console.log("Searchterms before search", searchTerms);
+    // console.log("Searchterms before search", searchTerms);
     let deferreds = [];
     $.each(searchTerms, (i) => {
       let disease = `&diseases.display_name=${searchTerms[i]}`;
@@ -336,7 +397,7 @@ $().ready(() => {
         })
       );
     });
-    console.log(deferreds);
+    // console.log(deferreds);
     $.when.apply($, deferreds).then(() => {
       populateResults(removeDuplicates(resultsArr));
     }).fail(() => console.log("error"));
