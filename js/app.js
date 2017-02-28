@@ -29,7 +29,6 @@ $().ready(() => {
     let map = new google.maps.Map(document.getElementById(`${nciID}loc`), mapOptions);
 
     for (var i = 0; i < coordArray.length; i++) {
-      console.log(contact[i]);
       let contentString = `<p class="row">${contact[i].org_name}</p><p class="row">${contact[i].org_phone}</p><p class="row">${contact[i].org_address_line_1}</p><p class="row">${contact[i].org_city}, ${contact[i].org_state_or_province}</p><p class="row">${contact[i].org_postal_code}</p>`
       let infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -270,15 +269,29 @@ $().ready(() => {
       for (let i = 0; i < resultsArrToMake.length; i++) {
         let curr = resultsArrToMake[i];
         let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div>
-        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
+        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">subject</i>Summary</div>
+      <div class="collapsible-body"><span>${curr.briefSummary}</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div>
+      <div class="collapsible-body"><span>${curr.principalInvestigator}</span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div>
+      <div class="collapsible-body"><span>${curr.collaborators}</span></div>
+    </li>
+  </ul></div></div></div>`);
         newRow = $(`<div class="row trial"></div>`);
         main.append(newRow);
         newRow.append(trialCard);
         $(`#${curr.nciID}diseaseArea`).append(curr.diseaseElement[0]);
         makeMap(curr.nciID, curr.coordinates, curr.contact);
-
+//
       }
       $('ul.tabs').tabs();
+      $('.collapsible').collapsible();
     }
 
     let organizeList = (trialArr) => {
@@ -312,7 +325,7 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let addToTrialArray = (items) => {
-    // console.log(items);
+    console.log(items);
     let parseUnstructured = (unstrucList) => {
       let arr = [];
       for (let obj of unstrucList) {
@@ -381,6 +394,7 @@ $().ready(() => {
       let individualTrialInfo = {
         briefTitle: trial.brief_title,
         briefSummary: trial.brief_summary,
+        principalInvestigator: trial.principal_investigator,
         title: trial.official_title,
         description: trial.detail_description,
         organization: trial.lead_org,
