@@ -8,7 +8,11 @@ body {
     -ms-transition: 2.5s;
     -o-transition: 2.5s;
     transition: 2.5s;
-    background-color: rgb(33, 33, 33);
+    background-image: url("../img/bg.png");
+
+}
+
+main {
 }
 li .text {
   display: block;

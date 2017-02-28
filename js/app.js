@@ -101,7 +101,8 @@ $().ready(() => {
     let searchButton = $(`<button id="termSearch" class="btn col s8 offset-s2 m6 offset-m3 flow-text">Search for Terms</button>`);
     let condBox = $(`<div id="condBox" class="center col s12 m12 condBox"><p>Add to Search</p></div>`);
 
-    body.css("background-color", "rgb(255, 255, 255)");
+    body.css("background-image", "url('./img/gplaypattern.png')");
+    main.css("background-color", "rgba(255, 255, 255, 0.6)");
     main.children().remove();
     form.append(condition);
     form.append(searchButton);
@@ -257,7 +258,7 @@ $().ready(() => {
     let main = $('main');
     main.children().remove();
     let description = $(`<div class="center row flow-text"><h5>${arrayOfResults.length} results have been found from your search parameters</h5></div>`);
-    let organizeRow = $(`<div class="row center"><h6>The results have been filtered by how well they matched your search results</h6></div`);
+    let organizeRow = $(`<div class="row center"><h6>The results have been filtered by how well they matched your search results</h6></div><div class="row center"><i class="small material-icons purple-text">grade</i></div><div class="row center">Conditions with stars next to them match your search query!</div>`);
     let newRow = '';
     main.append(description);
     main.append(organizeRow);
@@ -269,20 +270,7 @@ $().ready(() => {
       for (let i = 0; i < resultsArrToMake.length; i++) {
         let curr = resultsArrToMake[i];
         let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div>
-        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">subject</i>Summary</div>
-      <div class="collapsible-body"><span>${curr.briefSummary}</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div>
-      <div class="collapsible-body"><span>${curr.principalInvestigator}</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div>
-      <div class="collapsible-body"><span>${curr.collaborators}</span></div>
-    </li>
-  </ul></div></div></div>`);
+        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion"><li><div class="collapsible-header"><i class="material-icons">subject</i>Summary</div><div class="collapsible-body"><span>${curr.briefSummary}</span></div></li><li><div class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div><div class="collapsible-body"><span>${curr.principalInvestigator}</span></div></li><li><div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div><div class="collapsible-body"><span>${curr.collaborators}</span></div></li></ul></div></div></div>`);
         newRow = $(`<div class="row trial"></div>`);
         main.append(newRow);
         newRow.append(trialCard);
@@ -443,7 +431,6 @@ $().ready(() => {
         })
       );
     });
-    // console.log(deferreds);
     $.when.apply($, deferreds).then(() => {
       populateResults(removeDuplicates(resultsArr));
     }).fail(() => console.log("error"));
