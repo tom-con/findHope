@@ -2,11 +2,18 @@ $().ready(() => {
   let searchTerms = [];
   let resultsArr = [];
 
-  let makeMap = (nciID, lat, lon) => {
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  |                              |
+  |        MAKES MAP FOR         |
+  |        CURRENT TRIAL IN      |
+  |        THE POPULATE AREA     |
+  |                              |
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  let makeMap = (nciID, coordArray, contact) => {
     let mapOptions = {
-      zoom: 12,
+      zoom: 3,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      center: new google.maps.LatLng(parseFloat(lat), parseFloat(lon)),
+      center: new google.maps.LatLng(39.8282, -98.5795),
       panControl: false,
       panControlOptions: {
         position: google.maps.ControlPosition.BOTTOM_LEFT
@@ -18,11 +25,26 @@ $().ready(() => {
       },
       scaleControl: false
     };
+
     let map = new google.maps.Map(document.getElementById(`${nciID}loc`), mapOptions);
-    let marker = new google.maps.Marker({
-    position: {lat: parseFloat(lat), lng: parseFloat(lon)},
-    map: map
-  });
+
+    for (var i = 0; i < coordArray.length; i++) {
+      console.log(contact[i]);
+      let contentString = `<p class="row">${contact[i].org_name}</p><p class="row">${contact[i].org_phone}</p><p class="row">${contact[i].org_address_line_1}</p><p class="row">${contact[i].org_city}, ${contact[i].org_state_or_province}</p><p class="row">${contact[i].org_postal_code}</p>`
+      let infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      let marker = new google.maps.Marker({
+        position: {
+          lat: parseFloat(coordArray[i].lat),
+          lng: parseFloat(coordArray[i].lon)
+        },
+        map: map
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
   }
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -247,28 +269,28 @@ $().ready(() => {
       let newRow = '';
       for (let i = 0; i < resultsArrToMake.length; i++) {
         let curr = resultsArrToMake[i];
-        let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact.org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact.org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact.org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact.org_phone}</p></div>
-        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div><p class="row">${curr.contact.org_name}</p><p class="row">${curr.contact.org_address_line_1}</p><p class="row">${curr.contact.org_city}, ${curr.contact.org_state_or_province}</p><p class="row">${curr.contact.org_postal_code}</p></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
+        let trialCard = $(`<div class="card teal"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div>
+        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">${curr.briefSummary}</div></div></div>`);
         newRow = $(`<div class="row trial"></div>`);
         main.append(newRow);
         newRow.append(trialCard);
         $(`#${curr.nciID}diseaseArea`).append(curr.diseaseElement[0]);
-        makeMap(curr.nciID, curr.coordinates.lat, curr.coordinates.lon);
+        makeMap(curr.nciID, curr.coordinates, curr.contact);
 
       }
       $('ul.tabs').tabs();
     }
 
     let organizeList = (trialArr) => {
-      console.log(trialArr);
+      // console.log(trialArr);
       $('.trial').remove();
 
       let finalArr = [];
 
 
-        finalArr = trialArr.sort((a, b) => {
-          return a.diseaseElement[1] - b.diseaseElement[1];
-        }).reverse();
+      finalArr = trialArr.sort((a, b) => {
+        return a.diseaseElement[1] - b.diseaseElement[1];
+      }).reverse();
 
       makeResults(finalArr);
     };
@@ -290,7 +312,7 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let addToTrialArray = (items) => {
-
+    // console.log(items);
     let parseUnstructured = (unstrucList) => {
       let arr = [];
       for (let obj of unstrucList) {
@@ -299,27 +321,35 @@ $().ready(() => {
 
       return arr;
     };
-    let getContact = (contObj) => {
-      let newObj = {};
-      for (let item in contObj) {
-        if (contObj[item] === null) {
-          newObj[item] = "Information not available at this time";
-        } else {
-          newObj[item] = contObj[item];
+    let getContact = (contArr) => {
+      let newArr = [];
+      for (var i = 0; i < contArr.length; i++) {
+        let newObj = {};
+        for (let item in contArr[i]) {
+          if (contArr[i][item] === null) {
+            newObj[item] = "Information not available at this time";
+          } else {
+            newObj[item] = contArr[i][item];
+          }
         }
+        newArr.push(newObj);
       }
-
-      return newObj;
+      return newArr;
     };
 
-    let getLocation = (locationObj) => {
-      let locObj = getContact(locationObj);
-      let orgLat = locObj.org_coordinates.lat;
-      let orgLon = locObj.org_coordinates.lon;
-      return {
-        lat: orgLat,
-        lon: orgLon
-      };
+    let getLocation = (locationArr) => {
+      let sitesArr = [];
+      let locArr = getContact(locationArr);
+      for (let i = 0; i < locationArr.length; i++) {
+        let locObj = locArr[i];
+        let orgLat = locObj.org_coordinates.lat;
+        let orgLon = locObj.org_coordinates.lon;
+        sitesArr.push({
+          lat: orgLat,
+          lon: orgLon
+        });
+      }
+      return sitesArr;
     };
 
     let getDiseases = (diseaseList) => {
@@ -354,11 +384,13 @@ $().ready(() => {
         title: trial.official_title,
         description: trial.detail_description,
         organization: trial.lead_org,
-        coordinates: getLocation(trial.sites[0]),
+        contact: getContact(trial.sites),
+        collaborators: trial.collaborators[0].name,
+        coordinates: getLocation(trial.sites),
         nciID: trial.nci_id,
         nctID: trial.nct_id,
         diseaseElement: getDiseases(trial.diseases),
-        contact: getContact(trial.sites[0]),
+        primaryPurpose: trial.primary_purpose.primary_purpose_code,
         eligibility: {
           maxAge: trial.eligibility.structured.max_age,
           minAge: trial.eligibility.structured.min_age,
