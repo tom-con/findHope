@@ -12,6 +12,10 @@ body {
 
 }
 
+.quickhit:hover {
+  background-color: #009688;
+}
+
 main {
 }
 li .text {
