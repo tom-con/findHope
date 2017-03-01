@@ -60,3 +60,7 @@ ul div .indicator {
     background-color: #7B1FA2;
     color: #7B1FA2;
 }
+
+#searchAgain:hover {
+  color: #009688;
+}
