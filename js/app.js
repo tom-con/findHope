@@ -102,7 +102,7 @@ $().ready(() => {
     let form = $(`<form id="inputForm" class="row"></form>`);
     let condition = $(`<input id="mainSearch" class="col s12 m10 offset-m1 flow-text" type="text" placeholder="Ex. Pancreatic Carcinoma, Lung, Lymphoma">`);
     let searchButton = $(`<button id="termSearch" class="btn col s8 offset-s2 m6 offset-m3 flow-text">Search for Terms</button>`);
-    let condBox = $(`<div id="condBox" class="center col s12 m12 condBox"><p>Add to Search</p></div>`);
+    let condBox = $(`<div id="condBox" class="center col s12 m12 condBox tooltipped" data-position="right" data-delay="50" data-tooltip="Click on terms to add them to your search!"><p>Add to Search</p></div>`);
 
     body.css("background-image", "url('./img/gplaypattern.png')");
     main.css("background-color", "rgba(255, 255, 255, 0.6)");
@@ -113,6 +113,7 @@ $().ready(() => {
     main.append(form);
     main.append(condBox);
     searchButton.click(ajaxTerms);
+    $('.tooltipped').tooltip({delay: 50});
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,17 +139,21 @@ $().ready(() => {
     let searchTermRow = $('<div id="searchTermRow" class="center row flow-text"></div>');
     condBox.children().remove();
     for (let condition of termArray) {
-      let condChip = $(`<div class="chip flow-text" data-id="${condition.term_key}">${condition.term}</div>`);
-      condBox.append(condChip);
-      condChip.click((event) => {
-        if (!($(event.target).hasClass('purple-text'))) {
-          $(event.target).toggleClass("purple-text");
-          addToSearch(condition.term_key, condition.term);
-        } else {
-          $(event.target).toggleClass('purple-text');
-          removeFromSearch(condition.term_key, condition.term);
-        }
-      });
+      if(condition.term.toLowerCase().includes("center") || condition.term.toLowerCase().includes("institute") || condition.term.toLowerCase().includes("consortium") || condition.term.toLowerCase().includes("cancercare") || condition.term.toLowerCase().includes("united states")){ }
+      else if (condBox.children().length < 20) {
+        let condChip = $(`<div class="chip flow-text" data-id="${condition.term_key}">${condition.term}</div>`);
+        condBox.append(condChip);
+        condChip.click((event) => {
+          if (!($(event.target).hasClass('purple-text'))) {
+            $(event.target).toggleClass("purple-text");
+            addToSearch(condition.term_key, condition.term);
+          } else {
+            $(event.target).toggleClass('purple-text');
+            removeFromSearch(condition.term_key, condition.term);
+          }
+        });
+      }
+
     }
 
     if (!(main.children().last()[0] === $('#continueRow')[0])) {
@@ -185,7 +190,7 @@ $().ready(() => {
     }
     $.ajax({
       method: "GET",
-      url: `https://clinicaltrialsapi.cancer.gov/v1/terms?size=20&term=${search}`,
+      url: `https://clinicaltrialsapi.cancer.gov/v1/terms?size=100&term=${search}`,
       dataType: "JSON",
       success: (data) => giveOptions(data),
       error: () => console.log("Search term error")
@@ -277,9 +282,9 @@ $().ready(() => {
         let curr = resultsArrToMake[i];
         let stars = "";
         for (let i = 0; i < curr.diseaseElement[1]; i++) {
-          stars += '<i class="small material-icons purple-text">stars</i>';
+          stars += '<i class="small material-icons purple-text left">stars</i>';
         }
-        let quickHit = $(`<a href="#${curr.nciID}" class="col s12 m12 collection-item">${stars}<span class="right">${curr.contact[0].org_name} in ${curr.contact[0].org_city}, ${curr.contact[0].org_state_or_province}<span></a>`)
+        let quickHit = $(`<a href="#${curr.nciID}" class="col s12 m12 collection-item">${stars}${curr.contact[0].org_name} in ${curr.contact[0].org_city}, ${curr.contact[0].org_state_or_province}</a>`)
         let trialCard = $(`<div class="card teal" id="${curr.nciID}"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div>
         <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion"><li><div class="collapsible-header"><i class="material-icons">subject</i>Summary</div><div class="collapsible-body"><span>${curr.briefSummary}</span></div></li><li><div class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div><div class="collapsible-body"><span>${curr.principalInvestigator}</span></div></li><li><div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div><div class="collapsible-body"><span>${curr.collaborators}</span></div></li></ul></div></div></div>`);
         newRow = $(`<div class="row trial"></div>`);
