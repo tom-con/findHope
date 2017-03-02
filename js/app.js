@@ -104,7 +104,7 @@ $().ready(() => {
     trialObj = {};
     let body = $('body');
     let main = $('main');
-    let description = $(`<div class="row"><p class="center col s12 m12 flow-text">Please enter a condition to search for.</p></div>`);
+    let description = $(`<div class="row"><p class="center col s12 m12 flow-text">Please enter a cancer condition to search for.</p></div>`);
     let form = $(`<form id="inputForm" class="row"></form>`);
     let condition = $(`<input id="mainSearch" class="col s12 m10 offset-m1 flow-text" type="text" placeholder="Ex. Pancreatic Carcinoma, Lung, Lymphoma">`);
     let searchButton = $(`<button id="termSearch" class="btn col s8 offset-s2 m6 offset-m3 flow-text">Search for Terms</button>`);
@@ -398,7 +398,7 @@ $().ready(() => {
             authString += `${publication.authors[i]}`;
           }
         }
-        let articleLi = $(`<li><a hred="${publication.url}"><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></a></li>`).appendTo(articleUl);
+        let articleLi = $(`<li><a href="${publication.url}" target="blank"><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></a></li>`).appendTo(articleUl);
         numResearch += 1;
 
       }
