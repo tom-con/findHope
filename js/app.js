@@ -84,7 +84,7 @@ $().ready(() => {
     let body = $('body');
     let main = $('main');
     main.children().remove();
-    let intro = $(`<div class="row"><div class="col s12 m12 center"><div class="card blue-grey darken-3"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn flow-text">Continue</button></div></div></div></div>`);
+    let intro = $(`<div class="row"><div class="col s12 m12 center"><div id="welcomeCard" class="card"><div class="card-content white-text"><span class="card-title"><h2 class="thin welcome">Welcome</h2></span><ul class="flow-text"><li><i class="material-icons medium">language</i></li><li class="thin text">Connect to active clinical trials across the U.S.</li><li> <i class="material-icons medium">search</i></li><li class="thin text">Search by geographic location and condition</li><li><i class="material-icons medium">list</i></li><li class="thin text">Get results in an easy to read format</li></ul></div><div class="card-action"><button id="welcome" class="btn flow-text ">Continue</button></div></div></div></div>`);
 
     main.append(intro);
     $('#welcome').click((event) => createSearchPage());
@@ -110,8 +110,8 @@ $().ready(() => {
     let searchButton = $(`<button id="termSearch" class="btn col s8 offset-s2 m6 offset-m3 flow-text">Search for Terms</button>`);
     let condBox = $(`<div id="condBox" class="center col s12 m12 condBox tooltipped" data-position="right" data-delay="50" data-tooltip="Click on terms to add them to your search!"><p>Add to Search</p></div>`);
 
-    body.css("background-image", "url('./img/gplaypattern.png')");
-    main.css("background-color", "rgba(255, 255, 255, 0.6)");
+    body.css("background-image", "url('./img/sunrise.jpg')");
+    main.css("background-color", "rgba(255, 255, 255, 0.8)");
     main.children().remove();
     form.append(condition);
     form.append(searchButton);
@@ -148,7 +148,7 @@ $().ready(() => {
     condBox.children().remove();
     for (let condition of termArray) {
       if (condition.term.toLowerCase().includes("center") || condition.term.toLowerCase().includes("institute") || condition.term.toLowerCase().includes("consortium") || condition.term.toLowerCase().includes("cancercare") || condition.term.toLowerCase().includes("united states")) {} else if (condBox.children().length < 20) {
-        let condChip = $(`<div class="chip flow-text" data-id="${condition.term_key}">${condition.term}</div>`);
+        let condChip = $(`<div class="chip flow-text white" data-id="${condition.term_key}">${condition.term}</div>`);
         condBox.append(condChip);
         condChip.click((event) => {
           if (!($(event.target).hasClass('purple-text'))) {
@@ -398,7 +398,7 @@ $().ready(() => {
             authString += `${publication.authors[i]}`;
           }
         }
-        let articleLi = $(`<li><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></li>`).appendTo(articleUl);
+        let articleLi = $(`<li><a hred="${publication.url}"><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></a></li>`).appendTo(articleUl);
         numResearch += 1;
 
       }
