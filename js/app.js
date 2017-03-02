@@ -1,6 +1,7 @@
 $().ready(() => {
   let searchTerms = [];
   let resultsArr = [];
+  let trialObj = {};
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   |                              |
@@ -286,11 +287,12 @@ $().ready(() => {
           stars += '<i class="small material-icons purple-text left">stars</i>';
         }
         let quickHit = $(`<a href="#${curr.nciID}" class="col s12 m12 collection-item">${stars}${curr.contact[0].org_name} in ${curr.contact[0].org_city}, ${curr.contact[0].org_state_or_province}</a>`)
-        let trialCard = $(`<div class="card teal" id="${curr.nciID}"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div>
-        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion"><li><div class="collapsible-header"><i class="material-icons">subject</i>Summary</div><div class="collapsible-body"><span>${curr.briefSummary}</span></div></li><li><div id='princInvestTitle${curr.nciID}${(curr.principalInvestigator || "").replace(/[\.\s]/, "")}' class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div><div id='principalInvestigatorLi${curr.nciID}${(curr.principalInvestigator || "").replace(/[\.\s]/, "")}' class="collapsible-body"><h5><strong>${curr.principalInvestigator}:</strong></h5></div></li><li><div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div><div class="collapsible-body"><span>${curr.collaborators}</span></div></li></ul></div></div></div>`);
+        let trialCard = $(`<div class="card teal" id="${curr.nciID}"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div id="cardTabz${curr.nciID}" class="card-tabs"></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div><div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details"><ul class="collapsible" data-collapsible="accordion"><li><div class="collapsible-header"><i class="material-icons">subject</i>Summary</div><div class="collapsible-body"><span>${curr.briefSummary}</span></div></li><li><div id='princInvestTitle${curr.nciID}${(curr.principalInvestigator || "").replace(/[\.\s]/g, "")}' class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div><div id='principalInvestigatorLi${curr.nciID}${(curr.principalInvestigator || "").replace(/[\.\s]/g, "")}' class="collapsible-body"><h5><strong>${curr.principalInvestigator}</strong></h5></div></li><li><div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div><div class="collapsible-body"><span>${curr.collaborators}</span></div></li></ul></div></div></div>`);
         newRow = $(`<div class="row trial"></div>`);
         main.append(newRow);
         newRow.append(trialCard);
+        let tabsList = $(`<ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul>`).appendTo($(`#cardTabz${curr.nciID}`));
+
         if (quickHitRow.children().length < 3) {
           quickHitRow.append(quickHit);
         }
@@ -375,9 +377,8 @@ $().ready(() => {
     };
 
     let makePublications = (publications, investigator, nciID) => {
-      console.log(`making publications for ${investigator}`);
-      let investigatorElement = $(`#principalInvestigatorLi${nciID}${(investigator || "").replace(/[\s\.]/, "")}`);
-      let investigatorTitle = $(`#princInvestTitle${nciID}${(investigator || "").replace(/[\s\.]/, "")}`);
+      let investigatorElement = $(`#principalInvestigatorLi${nciID}${(investigator || "").replace(/[\s\.]/g, "")}`);
+      let investigatorTitle = $(`#princInvestTitle${nciID}${(investigator || "").replace(/[\s\.]/g, "")}`);
       let articleUl = $('<ul></ul>')
       let numResearch = 0;
 
@@ -393,8 +394,7 @@ $().ready(() => {
             authString += `${publication.authors[i]}`;
           }
         }
-        console.log(publication);
-        let articleLi = $(`<li>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</li><li></li>`).appendTo(articleUl);
+        let articleLi = $(`<li><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></li>`).appendTo(articleUl);
         numResearch += 1;
 
       }
@@ -412,8 +412,6 @@ $().ready(() => {
         return authorArr.sort();
       };
       if (investigator) {
-        console.log("investigator:",investigator);
-        console.log("nciID:",nciID, title, investigator);
         let publicationList = [];
         let publications = data.message.items;
         for (let publication of publications) {
@@ -423,7 +421,6 @@ $().ready(() => {
               let person = publication.author[i];
               let publicationDetails = {};
               if (person.family && person.given) {
-                console.log(person.family, person.given);
                 if (investigator.toLowerCase().includes(person.family.toLowerCase()) && investigator.toLowerCase().includes(person.given.toLowerCase()) && person.family !== person.given) {
                   publicationDetails.DOI = publication.DOI;
                   publicationDetails.name = publication.title[0];
@@ -494,31 +491,34 @@ $().ready(() => {
       otherDiseaseHead.prepend($(`<span class="badge">${otherCount}</span>`))
       return [diseaseListElement[0], starCount];
     };
-
     for (let trial of items.trials) {
-      let individualTrialInfo = {
-        briefTitle: trial.brief_title,
-        briefSummary: trial.brief_summary,
-        principalInvestigator: trial.principal_investigator,
-        principalInvestPubs: getPublications(trial.principal_investigator, trial.nci_id, trial.brief_title),
-        title: trial.official_title,
-        description: trial.detail_description,
-        organization: trial.lead_org,
-        contact: getContact(trial.sites),
-        collaborators: trial.collaborators[0].name,
-        coordinates: getLocation(trial.sites),
-        nciID: trial.nci_id,
-        nctID: trial.nct_id,
-        diseaseElement: getDiseases(trial.diseases),
-        primaryPurpose: trial.primary_purpose.primary_purpose_code,
-        eligibility: {
-          maxAge: trial.eligibility.structured.max_age,
-          minAge: trial.eligibility.structured.min_age,
-          gender: trial.eligibility.structured.gender,
-          other: parseUnstructured(trial.eligibility.unstructured)
-        }
-      };
-      resultsArr.push(individualTrialInfo);
+      if (trialObj[trial.nci_id] === "yes") {} else {
+        let individualTrialInfo = {
+          briefTitle: trial.brief_title,
+          briefSummary: trial.brief_summary,
+          principalInvestigator: trial.principal_investigator,
+          principalInvestPubs: getPublications(trial.principal_investigator, trial.nci_id, trial.brief_title),
+          title: trial.official_title,
+          description: trial.detail_description,
+          organization: trial.lead_org,
+          contact: getContact(trial.sites),
+          collaborators: trial.collaborators[0].name,
+          coordinates: getLocation(trial.sites),
+          nciID: trial.nci_id,
+          nctID: trial.nct_id,
+          diseaseElement: getDiseases(trial.diseases),
+          primaryPurpose: trial.primary_purpose.primary_purpose_code,
+          eligibility: {
+            maxAge: trial.eligibility.structured.max_age,
+            minAge: trial.eligibility.structured.min_age,
+            gender: trial.eligibility.structured.gender,
+            other: parseUnstructured(trial.eligibility.unstructured)
+          }
+
+        };
+        resultsArr.push(individualTrialInfo);
+        trialObj[trial.nci_id] = "yes";
+      }
     }
   };
 
