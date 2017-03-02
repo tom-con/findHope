@@ -2,6 +2,7 @@ $().ready(() => {
   let searchTerms = [];
   let resultsArr = [];
   let trialObj = {};
+  let link = $('.topLink');
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   |                              |
@@ -79,6 +80,7 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let createWelcomePage = () => {
+    link.hide();
     let body = $('body');
     let main = $('main');
     main.children().remove();
@@ -95,8 +97,11 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let createSearchPage = () => {
+
+    link.show();
     searchTerms = [];
     resultsArr = [];
+    trialObj = {};
     let body = $('body');
     let main = $('main');
     let description = $(`<div class="row"><p class="center col s12 m12 flow-text">Please enter a condition to search for.</p></div>`);
@@ -321,7 +326,6 @@ $().ready(() => {
 
     organizeList(arrayOfResults);
     $('#goSearch').click(() => {
-      console.log("clicked");
       organizeList(arrayOfResults);
     });
   };
@@ -407,7 +411,7 @@ $().ready(() => {
       let getAuthors = (authors) => {
         let authorArr = [];
         for (let author of authors) {
-          authorArr.push(`${author.family}, ${author.given[0]}.`);
+          authorArr.push(`${author.family}, ${(author.given ? author.given[0] : "")}.`);
         }
         return authorArr.sort();
       };
@@ -502,7 +506,7 @@ $().ready(() => {
           description: trial.detail_description,
           organization: trial.lead_org,
           contact: getContact(trial.sites),
-          collaborators: trial.collaborators[0].name,
+          collaborators: (trial.collaborators ? trial.collaborators[0].name : ""),
           coordinates: getLocation(trial.sites),
           nciID: trial.nci_id,
           nctID: trial.nct_id,

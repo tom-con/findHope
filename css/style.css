@@ -64,3 +64,12 @@ ul div .indicator {
 #searchAgain:hover {
   color: #009688;
 }
+
+.topLink {
+  -webkit-transition: 2.5s;
+  -moz-transition: 2.5s;
+  -ms-transition: 2.5s;
+  -o-transition: 2.5s;
+  transition: 2.5s;
+  font-size: 18px;
+}
