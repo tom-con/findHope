@@ -113,7 +113,9 @@ $().ready(() => {
     main.append(form);
     main.append(condBox);
     searchButton.click(ajaxTerms);
-    $('.tooltipped').tooltip({delay: 50});
+    $('.tooltipped').tooltip({
+      delay: 50
+    });
   };
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -139,8 +141,7 @@ $().ready(() => {
     let searchTermRow = $('<div id="searchTermRow" class="center row flow-text"></div>');
     condBox.children().remove();
     for (let condition of termArray) {
-      if(condition.term.toLowerCase().includes("center") || condition.term.toLowerCase().includes("institute") || condition.term.toLowerCase().includes("consortium") || condition.term.toLowerCase().includes("cancercare") || condition.term.toLowerCase().includes("united states")){ }
-      else if (condBox.children().length < 20) {
+      if (condition.term.toLowerCase().includes("center") || condition.term.toLowerCase().includes("institute") || condition.term.toLowerCase().includes("consortium") || condition.term.toLowerCase().includes("cancercare") || condition.term.toLowerCase().includes("united states")) {} else if (condBox.children().length < 20) {
         let condChip = $(`<div class="chip flow-text" data-id="${condition.term_key}">${condition.term}</div>`);
         condBox.append(condChip);
         condChip.click((event) => {
@@ -286,7 +287,7 @@ $().ready(() => {
         }
         let quickHit = $(`<a href="#${curr.nciID}" class="col s12 m12 collection-item">${stars}${curr.contact[0].org_name} in ${curr.contact[0].org_city}, ${curr.contact[0].org_state_or_province}</a>`)
         let trialCard = $(`<div class="card teal" id="${curr.nciID}"><div class="card-content"><h5 class="thin white-text"> ${curr.contact[0].org_name} has an ongoing trial concerning these conditions: </h5><div id="${curr.nciID}diseaseArea"></div></div><div class="card-tabs"><ul class="tabs tabs-fixed-width"><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}contact">Contact</a></li><li class="tab"><a class="active purple-text text-darken-2" href="#${curr.nciID}location">Location</a></li><li class="tab"><a class="purple-text text-darken-2" href="#${curr.nciID}details">Details</a></li></ul></div><div class="card-content grey lighten-4"><div id="${curr.nciID}contact"><p class="row"><strong>Contact Name: </strong> ${curr.contact[0].org_name}</p><p class="row"><strong>Email: </strong> ${curr.contact[0].org_email}</p><p class="row"><strong>Phone: </strong> ${curr.contact[0].org_phone}</p></div>
-        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion"><li><div class="collapsible-header"><i class="material-icons">subject</i>Summary</div><div class="collapsible-body"><span>${curr.briefSummary}</span></div></li><li><div class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div><div class="collapsible-body"><span>${curr.principalInvestigator}</span></div></li><li><div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div><div class="collapsible-body"><span>${curr.collaborators}</span></div></li></ul></div></div></div>`);
+        <div id="${curr.nciID}location"><div id="${curr.nciID}loc" class="map"></div></div><div id="${curr.nciID}details">  <ul class="collapsible" data-collapsible="accordion"><li><div class="collapsible-header"><i class="material-icons">subject</i>Summary</div><div class="collapsible-body"><span>${curr.briefSummary}</span></div></li><li id="principalInvestigatorLi"><div id="princInvestTitle" class="collapsible-header"><i class="material-icons">perm_identity</i>Principal Investigator</div><div class="collapsible-body"><span>${curr.principalInvestigator}</span></div></li><li><div class="collapsible-header"><i class="material-icons">call_merge</i>Collaborators</div><div class="collapsible-body"><span>${curr.collaborators}</span></div></li></ul></div></div></div>`);
         newRow = $(`<div class="row trial"></div>`);
         main.append(newRow);
         newRow.append(trialCard);
@@ -332,7 +333,7 @@ $().ready(() => {
   |                              |
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   let addToTrialArray = (items) => {
-    console.log("searchresults", items);
+    // console.log("searchresults", items);
     let parseUnstructured = (unstrucList) => {
       let arr = [];
       for (let obj of unstrucList) {
@@ -373,6 +374,76 @@ $().ready(() => {
       return sitesArr;
     };
 
+    let makePublications = (publications) => {
+      let investigatorElement = $('#principalInvestigatorLi');
+      let investigatorTitle = $('#princInvestTitle');
+      let numResearch = 0;
+
+      for (let publication of publications) {
+        let authString = "";
+        for (var i = 0; i < publication.authors.length; i++) {
+          if(i < publication.authors.length-1){
+            authString += `${authors[i]}, `;
+          }
+          else{
+            authString += `${authors[i]}`;
+          }
+        }
+        console.log(publication);
+        let articleDiv = $(`<div class="row">${authString} (${publication.date}) "${publicaton.name}", <em>${publication.publication}</em>, ${publication.pages}.</div>`)
+        numResearch += 1;
+      }
+      let researchBadges = $(`<span class="new badge" data-badge-caption="Research Articles">${numResearch}</span>`);
+      investigatorTitle.prepend(researchBadges);
+    }
+
+    let parsePublications = (data, investigator) => {
+      let getAuthors = (authors) => {
+        let authorArr = [];
+        for (let author of authors) {
+          authorArr.push(`${author.family}, ${author.given[0]}.`);
+        }
+        return authorArr.sort();
+      };
+      console.log(investigator);
+      let publicationList = [];
+      let publications = data.message.items;
+      for (let publication of publications) {
+        if (publication.hasOwnProperty('author')) {
+          // console.log("in author");
+          for (let i = 0; i < publication.author.length; i++) {
+            let person = publication.author[i];
+            let publicationDetails = {};
+            if (investigator.toLowerCase().includes(person.family.toLowerCase()) && investigator.toLowerCase().includes(person.given.toLowerCase()) && person.family !== person.given) {
+              publicationDetails.DOI = publication.DOI;
+              publicationDetails.name = publication.title[0];
+              publicationDetails.authors = getAuthors(publication.author);
+              publicationDetails.publisher = publication.publisher;
+              publicationDetails.publication = publication['container-title'][0];
+              publicationDetails.date = `${publication['published-print']['date-parts'][0][1]}-${publication['published-print']['date-parts'][0][0]}`;
+              publicationDetails.pages = publication.page;
+              publicationDetails.cited = publication['citing-count'];
+              publicationDetails.url = publication.URL;
+              // console.log(`${person.given} ${person.family}`);
+              // console.log(publication);
+              publicationList.push(publicationDetails);
+              // console.log(publicationDetails);
+            }
+          }
+        }
+      }
+      makePublications(publicationList);
+    }
+
+    let getPublications = (investigator) => {
+      $.ajax({
+        method: "GET",
+        url: `http://api.crossref.org/works?query="${investigator}"`,
+        success: (data) => parsePublications(data, investigator),
+        error: () => console.log("Error in publications")
+      })
+    }
+
     let getDiseases = (diseaseList) => {
       let diseaseListElement = $('<div class="row"></div>');
       let left = $('<div class="col s12 m6"></div>').appendTo(diseaseListElement);
@@ -408,6 +479,7 @@ $().ready(() => {
         briefTitle: trial.brief_title,
         briefSummary: trial.brief_summary,
         principalInvestigator: trial.principal_investigator,
+        principalInvestPubs: getPublications(trial.principal_investigator),
         title: trial.official_title,
         description: trial.detail_description,
         organization: trial.lead_org,

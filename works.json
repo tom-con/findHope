@@ -1,0 +1,1320 @@
+{
+    "status": "ok",
+    "message-type": "work-list",
+    "message-version": "1.0.0",
+    "message": {
+        "facets": {},
+        "total-results": 30771,
+        "items": [{
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 10]
+                ],
+                "date-time": "2016-11-10T20:08:21Z",
+                "timestamp": 1478808501490
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2015, 8]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190244187.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2015, 9, 25]
+                ],
+                "date-time": "2015-09-25T14:42:09Z",
+                "timestamp": 1443192129000
+            },
+            "source": "CrossRef",
+            "title": ["Pediatric Palliative Care"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2015, 9, 25]
+                ],
+                "date-time": "2015-09-25T14:42:09Z",
+                "timestamp": 1443192129000
+            },
+            "score": 25.980764,
+            "subtitle": [],
+            "editor": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2015, 8]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190244187"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190244187.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 11]
+                ],
+                "date-time": "2016-11-11T17:11:55Z",
+                "timestamp": 1478884315952
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2015, 1]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190223755.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2015, 4, 24]
+                ],
+                "date-time": "2015-04-24T10:25:18Z",
+                "timestamp": 1429871118000
+            },
+            "source": "CrossRef",
+            "title": ["Structure and Processes of Care"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2016, 10, 17]
+                ],
+                "date-time": "2016-10-17T10:17:51Z",
+                "timestamp": 1476699471000
+            },
+            "score": 24.463001,
+            "subtitle": [],
+            "editor": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2015, 1]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190223755"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190223755.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 11]
+                ],
+                "date-time": "2016-11-11T17:12:29Z",
+                "timestamp": 1478884349643
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2015, 11]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190244132.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2016, 2, 26]
+                ],
+                "date-time": "2016-02-26T12:43:53Z",
+                "timestamp": 1456490633000
+            },
+            "source": "CrossRef",
+            "title": ["Social Aspects of Care"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2016, 10, 17]
+                ],
+                "date-time": "2016-10-17T10:18:56Z",
+                "timestamp": 1476699536000
+            },
+            "score": 24.463001,
+            "subtitle": [],
+            "editor": [{
+                "given": "Nessa",
+                "family": "Coyle",
+                "affiliation": []
+            }, {
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2015, 11]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190244132"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190244132.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 1]
+                ],
+                "date-time": "2016-11-01T16:56:53Z",
+                "timestamp": 1478019413328
+            },
+            "reference-count": 12,
+            "publisher": "Elsevier BV",
+            "issue": "4",
+            "license": [{
+                "URL": "http:\/\/www.elsevier.com\/tdm\/userlicense\/1.0\/",
+                "start": {
+                    "date-parts": [
+                        [1990, 7, 1]
+                    ],
+                    "date-time": "1990-07-01T00:00:00Z",
+                    "timestamp": 646790400000
+                },
+                "delay-in-days": 0,
+                "content-version": "tdm"
+            }],
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": ["Geriatric Nursing"],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [1990, 7]
+                ]
+            },
+            "DOI": "10.1016\/s0197-4572(05)80337-4",
+            "type": "journal-article",
+            "created": {
+                "date-parts": [
+                    [2007, 1, 22]
+                ],
+                "date-time": "2007-01-22T14:18:57Z",
+                "timestamp": 1169475537000
+            },
+            "page": "175-178",
+            "source": "CrossRef",
+            "title": ["Easing the pain"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1016",
+            "volume": "11",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Bruce A.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/78",
+            "container-title": ["Geriatric Nursing"],
+            "original-title": [],
+            "link": [{
+                "URL": "http:\/\/api.elsevier.com\/content\/article\/PII:S0197457205803374?httpAccept=text\/xml",
+                "content-type": "text\/xml",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+            }, {
+                "URL": "http:\/\/api.elsevier.com\/content\/article\/PII:S0197457205803374?httpAccept=text\/plain",
+                "content-type": "text\/plain",
+                "content-version": "vor",
+                "intended-application": "text-mining"
+            }],
+            "deposited": {
+                "date-parts": [
+                    [2015, 11, 28]
+                ],
+                "date-time": "2015-11-28T08:53:18Z",
+                "timestamp": 1448700798000
+            },
+            "score": 23.95192,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [1990, 7]
+                ]
+            },
+            "alternative-id": ["S0197457205803374"],
+            "URL": "http:\/\/dx.doi.org\/10.1016\/s0197-4572(05)80337-4",
+            "ISSN": ["0197-4572"],
+            "citing-count": 12,
+            "subject": ["Gerontology"]
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 12]
+                ],
+                "date-time": "2016-11-12T21:00:29Z",
+                "timestamp": 1478984429238
+            },
+            "reference-count": 0,
+            "publisher": "RCN Publishing Ltd.",
+            "issue": "3",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": ["Elderly Care"],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [1993, 5]
+                ]
+            },
+            "DOI": "10.7748\/eldc.5.3.29.s39",
+            "type": "journal-article",
+            "created": {
+                "date-parts": [
+                    [2016, 6, 8]
+                ],
+                "date-time": "2016-06-08T12:04:29Z",
+                "timestamp": 1465387469000
+            },
+            "page": "29-31",
+            "source": "CrossRef",
+            "title": ["Cancer and the older adult"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.7748",
+            "volume": "5",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/4499",
+            "container-title": ["Elderly Care"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2016, 6, 8]
+                ],
+                "date-time": "2016-06-08T12:04:30Z",
+                "timestamp": 1465387470000
+            },
+            "score": 22.28236,
+            "subtitle": ["Betty Ferrell discusses aspects of pain assessment and management for oncology nurses"],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [1993, 5]
+                ]
+            },
+            "alternative-id": ["10.7748\/eldc.5.3.29.s39"],
+            "URL": "http:\/\/dx.doi.org\/10.7748\/eldc.5.3.29.s39",
+            "ISSN": ["1369-1856"],
+            "citing-count": 0,
+            "subject": ["Medicine(all)"]
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T20:00:48Z",
+                "timestamp": 1478635248318
+            },
+            "reference-count": 0,
+            "publisher": "SAGE Publications",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "DOI": "10.4135\/9781412991452.d141",
+            "type": "book-chapter",
+            "created": {
+                "date-parts": [
+                    [2011, 7, 15]
+                ],
+                "date-time": "2011-07-15T19:48:50Z",
+                "timestamp": 1310759330000
+            },
+            "page": "394-405",
+            "source": "CrossRef",
+            "title": ["21 Managing Pain"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.4135",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/179",
+            "container-title": ["Handbook of Clinical Nursing Research"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2014, 1, 30]
+                ],
+                "date-time": "2014-01-30T01:33:55Z",
+                "timestamp": 1391045635000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [null]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780803957848", "http:\/\/id.crossref.org\/isbn\/9781412991452"],
+            "alternative-id": ["10.4135\/9781412991452"],
+            "URL": "http:\/\/dx.doi.org\/10.4135\/9781412991452.d141",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T18:34:08Z",
+                "timestamp": 1478630048458
+            },
+            "reference-count": 0,
+            "publisher": "Springer Nature",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2009]
+                ]
+            },
+            "DOI": "10.1007\/978-0-387-89070-8_7",
+            "type": "book-chapter",
+            "created": {
+                "date-parts": [
+                    [2009, 7, 13]
+                ],
+                "date-time": "2009-07-13T20:45:06Z",
+                "timestamp": 1247517906000
+            },
+            "page": "135-155",
+            "source": "CrossRef",
+            "title": ["Family Caregivers"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1007",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Polly",
+                "family": "Mazanec",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/297",
+            "published-online": {
+                "date-parts": [
+                    [2009, 6, 15]
+                ]
+            },
+            "container-title": ["Geriatric Oncology"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2014, 1, 7]
+                ],
+                "date-time": "2014-01-07T21:19:17Z",
+                "timestamp": 1389129557000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2009]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/978-0-387-89069-2", "http:\/\/id.crossref.org\/isbn\/978-0-387-89070-8"],
+            "URL": "http:\/\/dx.doi.org\/10.1007\/978-0-387-89070-8_7",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 10, 26]
+                ],
+                "date-time": "2016-10-26T21:47:06Z",
+                "timestamp": 1477518426911
+            },
+            "reference-count": 0,
+            "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+            "issue": "6",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": ["Nursing"],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [1990, 6]
+                ]
+            },
+            "DOI": "10.1097\/00152193-199006000-00028",
+            "type": "journal-article",
+            "created": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T17:03:59Z",
+                "timestamp": 1377882239000
+            },
+            "page": "62-63",
+            "source": "CrossRef",
+            "title": ["DO YOU KNOW ANAR"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1097",
+            "volume": "20",
+            "author": [{
+                "given": "MARGO",
+                "family": "McCAFFERY",
+                "affiliation": []
+            }, {
+                "given": "BETTY",
+                "family": "FERRELL",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/276",
+            "container-title": ["Nursing"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T17:04:17Z",
+                "timestamp": 1377882257000
+            },
+            "score": 22.08762,
+            "subtitle": [""],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [1990, 6]
+                ]
+            },
+            "URL": "http:\/\/dx.doi.org\/10.1097\/00152193-199006000-00028",
+            "ISSN": ["0360-4039"],
+            "citing-count": 0,
+            "subject": ["Critical Care", "Assessment and Diagnosis", "LPN and LVN", "Emergency", "Advanced and Specialised Nursing"]
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 10, 26]
+                ],
+                "date-time": "2016-10-26T21:44:49Z",
+                "timestamp": 1477518289456
+            },
+            "reference-count": 0,
+            "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+            "issue": "8",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": ["Nursing"],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [1994, 8]
+                ]
+            },
+            "DOI": "10.1097\/00152193-199408000-00014",
+            "type": "journal-article",
+            "created": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T16:59:32Z",
+                "timestamp": 1377881972000
+            },
+            "page": "26",
+            "source": "CrossRef",
+            "title": ["MANAGING POSTOPERATIVE PAIN"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1097",
+            "volume": "24",
+            "author": [{
+                "given": "Betty Rolling",
+                "family": "ferrell",
+                "affiliation": []
+            }, {
+                "given": "Barbara A.",
+                "family": "Reed",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/276",
+            "container-title": ["Nursing"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T16:59:40Z",
+                "timestamp": 1377881980000
+            },
+            "score": 22.08762,
+            "subtitle": [""],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [1994, 8]
+                ]
+            },
+            "URL": "http:\/\/dx.doi.org\/10.1097\/00152193-199408000-00014",
+            "ISSN": ["0360-4039"],
+            "citing-count": 0,
+            "subject": ["Critical Care", "Assessment and Diagnosis", "LPN and LVN", "Emergency", "Advanced and Specialised Nursing"]
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 10, 26]
+                ],
+                "date-time": "2016-10-26T21:44:57Z",
+                "timestamp": 1477518297603
+            },
+            "reference-count": 0,
+            "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+            "issue": "8",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": ["Nursing"],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [1994, 8]
+                ]
+            },
+            "DOI": "10.1097\/00152193-199408000-00027",
+            "type": "journal-article",
+            "created": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T16:59:32Z",
+                "timestamp": 1377881972000
+            },
+            "page": "56-59",
+            "source": "CrossRef",
+            "title": ["UNDERSTANDING OPIOIDS & ADDICTION"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1097",
+            "volume": "24",
+            "author": [{
+                "given": "MARGO",
+                "family": "McCAFFERY",
+                "affiliation": []
+            }, {
+                "given": "BETTY R.",
+                "family": "FERRELL",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/276",
+            "container-title": ["Nursing"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T16:59:48Z",
+                "timestamp": 1377881988000
+            },
+            "score": 22.08762,
+            "subtitle": [""],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [1994, 8]
+                ]
+            },
+            "URL": "http:\/\/dx.doi.org\/10.1097\/00152193-199408000-00027",
+            "ISSN": ["0360-4039"],
+            "citing-count": 0,
+            "subject": ["Critical Care", "Assessment and Diagnosis", "LPN and LVN", "Emergency", "Advanced and Specialised Nursing"]
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 10, 26]
+                ],
+                "date-time": "2016-10-26T21:45:17Z",
+                "timestamp": 1477518317730
+            },
+            "reference-count": 0,
+            "publisher": "Ovid Technologies (Wolters Kluwer Health)",
+            "issue": "3",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": ["Nursing"],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [1994, 3]
+                ]
+            },
+            "DOI": "10.1097\/00152193-199403000-00013",
+            "type": "journal-article",
+            "created": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T17:00:26Z",
+                "timestamp": 1377882026000
+            },
+            "page": "28",
+            "source": "CrossRef",
+            "title": ["USING PLACEBOS ETHICALLY"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1097",
+            "volume": "24",
+            "author": [{
+                "given": "Betty Rolling",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Vivian R.",
+                "family": "Sheidler",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/276",
+            "container-title": ["Nursing"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 8, 30]
+                ],
+                "date-time": "2013-08-30T17:00:33Z",
+                "timestamp": 1377882033000
+            },
+            "score": 22.08762,
+            "subtitle": [""],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [1994, 3]
+                ]
+            },
+            "URL": "http:\/\/dx.doi.org\/10.1097\/00152193-199403000-00013",
+            "ISSN": ["0360-4039"],
+            "citing-count": 0,
+            "subject": ["Critical Care", "Assessment and Diagnosis", "LPN and LVN", "Emergency", "Advanced and Specialised Nursing"]
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T12:57:05Z",
+                "timestamp": 1478609825019
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2008, 1, 10]
+                ]
+            },
+            "DOI": "10.1093\/acprof:oso\/9780195333121.001.0001",
+            "type": "monograph",
+            "created": {
+                "date-parts": [
+                    [2011, 10, 11]
+                ],
+                "date-time": "2011-10-11T19:19:08Z",
+                "timestamp": 1318360748000
+            },
+            "source": "CrossRef",
+            "title": ["The Nature of Suffering and the Goals of Nursing"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Nessa",
+                "family": "Coyle",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 9, 3]
+                ],
+                "date-time": "2013-09-03T13:24:45Z",
+                "timestamp": 1378214685000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2008, 1, 10]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780195333121"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/acprof:oso\/9780195333121.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T13:08:15Z",
+                "timestamp": 1478610495568
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2012, 8]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780199571390.003.0023",
+            "type": "book-chapter",
+            "created": {
+                "date-parts": [
+                    [2012, 9, 21]
+                ],
+                "date-time": "2012-09-21T14:40:19Z",
+                "timestamp": 1348238419000
+            },
+            "page": "157-162",
+            "source": "CrossRef",
+            "title": ["Suffering"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Betty",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Catherine",
+                "family": "Del Ferraro",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": ["Oxford Textbook of Spirituality in Healthcare"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 9, 11]
+                ],
+                "date-time": "2013-09-11T07:28:06Z",
+                "timestamp": 1378884486000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2012, 8]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780199571390"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780199571390.003.0023",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T13:09:19Z",
+                "timestamp": 1478610559170
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2010, 4]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780195367430.003.0088",
+            "type": "book-chapter",
+            "created": {
+                "date-parts": [
+                    [2013, 1, 4]
+                ],
+                "date-time": "2013-01-04T16:54:02Z",
+                "timestamp": 1357318442000
+            },
+            "page": "610-616",
+            "source": "CrossRef",
+            "title": ["Professional Education in Psychosocial Oncology"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Shirley",
+                "family": "Otis-Green",
+                "affiliation": []
+            }, {
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": ["Psycho-Oncology"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 9, 11]
+                ],
+                "date-time": "2013-09-11T07:23:54Z",
+                "timestamp": 1378884234000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2010, 4]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780195367430"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780195367430.003.0088",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T13:09:35Z",
+                "timestamp": 1478610575333
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2010, 4]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780195391343.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2013, 1, 4]
+                ],
+                "date-time": "2013-01-04T16:54:02Z",
+                "timestamp": 1357318442000
+            },
+            "source": "CrossRef",
+            "title": ["Oxford Textbook of Palliative Nursing"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 9, 11]
+                ],
+                "date-time": "2013-09-11T07:26:10Z",
+                "timestamp": 1378884370000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "editor": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Nessa",
+                "family": "Coyle",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2010, 4]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780195391343"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780195391343.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 8]
+                ],
+                "date-time": "2016-11-08T13:09:41Z",
+                "timestamp": 1478610581802
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2010, 4]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780195391343.003.0079",
+            "type": "book-chapter",
+            "created": {
+                "date-parts": [
+                    [2013, 1, 4]
+                ],
+                "date-time": "2013-01-04T16:54:02Z",
+                "timestamp": 1357318442000
+            },
+            "page": "1349-1352",
+            "source": "CrossRef",
+            "title": ["A Good Death"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": ["Oxford Textbook of Palliative Nursing"],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2013, 9, 11]
+                ],
+                "date-time": "2013-09-11T07:26:20Z",
+                "timestamp": 1378884380000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2010, 4]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780195391343"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780195391343.003.0079",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 11]
+                ],
+                "date-time": "2016-11-11T17:11:56Z",
+                "timestamp": 1478884316389
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2015, 1]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190239442.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2015, 4, 24]
+                ],
+                "date-time": "2015-04-24T10:25:26Z",
+                "timestamp": 1429871126000
+            },
+            "source": "CrossRef",
+            "title": ["Physical Aspects of Care"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2016, 10, 17]
+                ],
+                "date-time": "2016-10-17T10:18:42Z",
+                "timestamp": 1476699522000
+            },
+            "score": 22.08762,
+            "subtitle": ["Pain and Gastrointestinal Symptoms"],
+            "editor": [{
+                "given": "Judith A.",
+                "family": "Paice",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2015, 1]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190239442"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190239442.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 11]
+                ],
+                "date-time": "2016-11-11T17:12:42Z",
+                "timestamp": 1478884362145
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2016, 2]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190204747.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2016, 4, 28]
+                ],
+                "date-time": "2016-04-28T13:53:01Z",
+                "timestamp": 1461851581000
+            },
+            "source": "CrossRef",
+            "title": ["Advanced Practice Palliative Nursing"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2016, 10, 17]
+                ],
+                "date-time": "2016-10-17T10:12:41Z",
+                "timestamp": 1476699161000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "editor": [{
+                "given": "Constance",
+                "family": "Dahlin",
+                "affiliation": []
+            }, {
+                "given": "Patrick",
+                "family": "Coyne",
+                "affiliation": []
+            }, {
+                "given": "Betty",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2016, 2]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190204747"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190204747.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 11]
+                ],
+                "date-time": "2016-11-11T00:13:42Z",
+                "timestamp": 1478823222906
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2015, 11]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190244286.001.0001",
+            "type": "book",
+            "created": {
+                "date-parts": [
+                    [2016, 1, 29]
+                ],
+                "date-time": "2016-01-29T09:41:14Z",
+                "timestamp": 1454060474000
+            },
+            "source": "CrossRef",
+            "title": ["Care of the Imminently Dying"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Betty",
+                "family": "Ferrell",
+                "affiliation": []
+            }, {
+                "given": "Nessa",
+                "family": "Coyle",
+                "affiliation": []
+            }, {
+                "given": "Judith",
+                "family": "Paice",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2016, 1, 29]
+                ],
+                "date-time": "2016-01-29T09:41:14Z",
+                "timestamp": 1454060474000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "editor": [{
+                "given": "Judith",
+                "family": "Paice",
+                "affiliation": []
+            }],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2015, 11]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190244286"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190244286.001.0001",
+            "citing-count": 0
+        }, {
+            "indexed": {
+                "date-parts": [
+                    [2016, 11, 10]
+                ],
+                "date-time": "2016-11-10T20:08:21Z",
+                "timestamp": 1478808501133
+            },
+            "reference-count": 0,
+            "publisher": "Oxford University Press (OUP)",
+            "content-domain": {
+                "domain": [],
+                "crossmark-restriction": false
+            },
+            "short-container-title": [],
+            "cited-count": 0,
+            "published-print": {
+                "date-parts": [
+                    [2015, 8]
+                ]
+            },
+            "DOI": "10.1093\/med\/9780190244231.001.0001",
+            "type": "monograph",
+            "created": {
+                "date-parts": [
+                    [2015, 9, 25]
+                ],
+                "date-time": "2015-09-25T14:42:07Z",
+                "timestamp": 1443192127000
+            },
+            "source": "CrossRef",
+            "title": ["Spiritual, Religious, and Cultural Aspects of Care"],
+            "prefix": "http:\/\/id.crossref.org\/prefix\/10.1093",
+            "author": [{
+                "given": "Betty R.",
+                "family": "Ferrell",
+                "affiliation": []
+            }],
+            "member": "http:\/\/id.crossref.org\/member\/286",
+            "container-title": [],
+            "original-title": [],
+            "deposited": {
+                "date-parts": [
+                    [2015, 9, 25]
+                ],
+                "date-time": "2015-09-25T14:42:07Z",
+                "timestamp": 1443192127000
+            },
+            "score": 22.08762,
+            "subtitle": [],
+            "short-title": [],
+            "issued": {
+                "date-parts": [
+                    [2015, 8]
+                ]
+            },
+            "ISBN": ["http:\/\/id.crossref.org\/isbn\/9780190244231"],
+            "URL": "http:\/\/dx.doi.org\/10.1093\/med\/9780190244231.001.0001",
+            "citing-count": 0
+        }],
+        "items-per-page": 20,
+        "query": {
+            "start-index": 0,
+            "search-terms": "\"Betty Ferrell\""
+        }
+    }
+}
