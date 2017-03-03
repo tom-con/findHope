@@ -17,13 +17,23 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcu3kty7zbrgdhuck46DoTh3FihlJE-2c" type="text/javascript"></script>
   <script type="text/javascript" src="js/appAbout.js">
   </script>
+  <script type="text/javascript">
+    if (document.images) {
+      img1 = new Image();
+      img2 = new Image();
+      img3 = new Image();
+      img1.src = "img/sunrise.jpg";
+      img2.src = "img/sunrise2.jpeg";
+      img3.src = "img/happy.jpg";
+    }
+  </script>
   <link rel="icon" href="logo.png">
 </head>
 
 <body class="container lightPic">
   <header class="row">
     <div class="row"></div>
-      <div><a href="index.html" class="topLink right purple-text">Home</a></div>
+    <div><a href="index.html" class="topLink right purple-text">Home</a></div>
     <div class="col m1"></div>
     <div class="center col s12 m10">
       <a href="index.html"><h1><span class="teal-text text-lighten-3">find</span><span class="purple-text">Hope</span></h1></a></div>
@@ -32,24 +42,32 @@
   <main class="container">
     <div class="row">
       <div class="col s12 m12">
-    <div class="card horizontal">
-      <div class="card-image">
-        <img src="img/happy.jpg">
-      </div>
-      <div class="card-stacked">
-        <div class="card-content center">
-          <h4 class="center thin">About <span class="teal-text">find</span><span class="purple-text">Hope</span></h4>
-          <div class="divider"></div><br><br>
-          <ul>
-          <li><p>We began in 2017 with a very simple vision--helping cancer patients connect to clinical trials</p></li><br><br>
-          <li><p>We are powered by the National Cancer Institute's, Google Maps', and Crosref's APIs</p></li><br><br>
-          <li><p>Please consider supporting us so that we can continue to deliver meaningful solutions to life's hardest problems</p></li><br>
-          <li><p>Send inquiries or suggestions to tconchie@gmail.com</p></li><br>
-          </ul>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img src="img/happy.jpg">
+          </div>
+          <div class="card-stacked">
+            <div class="card-content center">
+              <h4 class="center thin">About <span class="teal-text">find</span><span class="purple-text">Hope</span></h4>
+              <div class="divider"></div><br><br>
+              <ul>
+                <li>
+                  <p>We began in 2017 with a very simple vision--helping cancer patients connect to clinical trials</p>
+                </li><br><br>
+                <li>
+                  <p>We are powered by the National Cancer Institute's, Google Maps', and Crosref's APIs</p>
+                </li><br><br>
+                <li>
+                  <p>Please consider supporting us so that we can continue to deliver meaningful solutions to life's hardest problems</p>
+                </li><br>
+                <li>
+                  <p>Send inquiries or suggestions to tconchie@gmail.com</p>
+                </li><br>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
     </div>
   </main>
 </body>

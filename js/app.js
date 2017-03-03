@@ -398,7 +398,7 @@ $().ready(() => {
             authString += `${publication.authors[i]}`;
           }
         }
-        let articleLi = $(`<li><a href="${publication.url}" target="blank"><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></a></li>`).appendTo(articleUl);
+        let articleLi = $(`<li><a href="${publication.url}" target="blank"><p>${authString} (${publication.date}) "${publication.name}", <em>${publication.publication}</em>, ${publication.pages}.</p></a></li><div class="divider"></div>`).appendTo(articleUl);
         numResearch += 1;
 
       }
@@ -431,8 +431,12 @@ $().ready(() => {
                   publicationDetails.authors = getAuthors(publication.author);
                   publicationDetails.publisher = publication.publisher;
                   publicationDetails.publication = publication['container-title'][0];
-                  if (publication.hasOwnProperty('published-print'))
-                    publicationDetails.date = `${publication['published-print']['date-parts'][0][1]}-${publication['published-print']['date-parts'][0][0]}`;
+                  if (publication.hasOwnProperty('published-print')) {
+                    if (publication['published-print'].hasOwnProperty('date-parts')) {
+                      publicationDetails.date = `${publication['published-print']['date-parts'][0][1] ? publication['published-print']['date-parts'][0][1] : ""}-${publication['published-print']['date-parts'][0][0] ? publication['published-print']['date-parts'][0][0] : ""}`;
+                    }
+
+                  }
                   publicationDetails.pages = publication.page;
                   publicationDetails.cited = publication['citing-count'];
                   publicationDetails.url = publication.URL;

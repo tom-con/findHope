@@ -5,7 +5,7 @@
   <meta charset="utf-8">
 
   <!--Let browser know website is optimized for mobile-->
- <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>findHope - Clinical Trial Search</title>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" media="screen,projection">
@@ -14,9 +14,17 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcu3kty7zbrgdhuck46DoTh3FihlJE-2c"
-  type="text/javascript"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcu3kty7zbrgdhuck46DoTh3FihlJE-2c" type="text/javascript"></script>
   <script type="text/javascript" src="js/app.js">
+  </script>
+  <script type="text/javascript">
+    if (document.images) {
+      img1 = new Image();
+      img2 = new Image();
+
+      img1.src = "img/sunrise.jpg";
+      img2.src = "img/sunrise2.jpeg";
+    }
   </script>
   <link rel="icon" href="logo.png">
 </head>
@@ -24,7 +32,9 @@
 <body class="container">
   <header class="row">
     <div class="row"></div>
-    <div class="row"><div><a href="about.html" class="topLink right purple-text">About</a></div></div>
+    <div class="row">
+      <div><a href="about.html" class="topLink right purple-text">About</a></div>
+    </div>
     <div class="col m1"></div>
     <div class="center col s12 m10">
       <a id="mainTitle" href="index.html"><h1><span class="teal-text text-lighten-3">find</span><span class="purple-text text-darken-2">Hope</span></h1></a></div>
