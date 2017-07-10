@@ -1,5 +1,26 @@
 # findHope
 
-## A Web App designed to connect cancer patients with relevant clinical trials using the National Cancer Institute's Clinical Trial API, Google Maps API, and Crosref API. This project is presented in HTML and CSS, using a Materialize framework. Javascript is implemented to allow functionality along with the jQuery library.
+A Web App designed to connect cancer patients with relevant clinical trials using the National Cancer Institute's Clinical Trial API, Google Maps API, and Crosref API. This project is presented in HTML and CSS, using a Materialize framework. Javascript is implemented to allow functionality along with the jQuery library.
 
-## findHope directs users to a splash page describing the app's capabilities. After clicking continue, they are prompted to enter a cancer condition in to the search bar. This will populate a list of cancer conditions that the user may be referring to in their search. The user then clicks the conditions relevant to them, thus applying them to the main search criteria. The user then clicks the continue button to get to the final search criteria page, where a user can further refine their search by Age, Biological sex, and State. They may also search for trials based on whether those trials are currently accepting volunteers or not. After clicking the search button, a list will be populated that shows all the clinical trials that match the user's search criteria. It will also display a map of all the locations at which this trial is happening across the U.S. It also has a details page with a brief summary of the trial, who the principal investigator is, and (if the investigator has published research) a list of their published research, with link to those articles.
+### Getting Started
+Check out the video walkthrough below to see the features of the website:
+
+[![findHope Video Walkthrough](img/findhope_youtube.png)](https://youtu.be/agYm6MlS4iM)
+
+
+### Features
+-User searches for a cancer condition and is given a list of potential conditions that they want to search for
+-User selects the matching conditions and enters in their age, biological sex, whether they want clinical trials that are currently accepting volunteers
+-findHope then locates all clinical trials that match the search criteria, and populates a Google Map showing the locations available
+-findHope also provides information about the principal investigator and any publications they might have
+
+### Technologies used
+-Javascript ES6, jQuery, AJAX
+-National Cancer Institute's Clinical Trial API for clinical trial data-id
+-Google Maps API for location services and map rendering
+-Crosref API for research article publications
+-Materialize CSS
+-HTML5, CSS3
+
+### Thanks for stopping by!
+If you have any suggestions for improvement please contact me and let me know
